@@ -1,0 +1,15 @@
+model Locations {
+  id_device String   @id
+  longitude Float
+  latitude  Float
+  date_l    DateTime @default(now())
+  device    Device?  @relation(fields: [id_device], references: [id_device], onDelete: SetNull)
+}
+
+model Device {
+  id_device   String   @id @default(uuid())
+  name_device String
+  status_d    String
+  update_date DateTime?
+  locations   Locations[]
+}
