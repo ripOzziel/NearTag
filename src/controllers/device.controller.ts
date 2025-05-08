@@ -140,32 +140,42 @@ export const markDeviceAsLost = async (req: Request, res: Response): Promise<any
 };
 
 export const getUserDevices = async (req: Request, res: Response): Promise<any> => {
-  const { userId } = req.params; // El ID del usuario se pasa como parámetro
+  const token = req.headers.authorization?.split(' ')[1];
+  if(!token) return res.status(401).json({error: 'jwt invalido'});
 
   try {
+    const decoded = jwt.verify(token, SECRET_KEY) as {id: string};
+    const { userId } = req.params;
     // Verificar si el usuario existe
     const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+      return res.status(404).json({ error: 'Dispositivo no encontrado' });
+    }
+
+    if (user.id !== decoded.id) {
+      return res.status(403).json({ error: 'No tiene permisos sobre este dispositivo' });
     }
 
     // Obtener los dispositivos asociados al usuario
-    const devices = await prisma.device.findMany({
-      where: { userId },
+    const userDevices = await prisma.device.findMany({
+      where: { userId: user.id },
       select: {
-        id_device: true,
         name_device: true,
         status_d: true,
+        update_date: true,
+        connections: true,
+        configuration: true,
+        locations: true,
+        records: true,
+        user: true
       },
     });
 
-    // Si no hay dispositivos asociados, devolver un mensaje
-    if (devices.length === 0) {
+    if (userDevices.length === 0) {
       return res.status(200).json({ message: 'No tienes dispositivos asociados.' });
     }
 
-    // Devolver la lista de dispositivos
-    return res.status(200).json({ devices });
+    return res.status(200).json({ userDevices });
   } catch (err) {
     return res.status(500).json({ error: 'Error al consultar los dispositivos', detail: err });
   }

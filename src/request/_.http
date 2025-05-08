@@ -22,22 +22,31 @@ Content-Type: application/json
 ###
 POST {{api}}/assign
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3ODhjYWMzLTMyYzUtNDdkNC05MmUyLTdkZDRhZDNjNzI5MCIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDUxMTV9.8RtHwwI0Px2KY-8ItqOxCkJZFuDDCE0D-Q1FU6WhBg0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2ZGM1MGFiLTIxY2EtNGY4Mi1hOTQ2LTMxODYxNWM0Y2I0NyIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDcxNjJ9.6aqXJL5U1zBWp20nL2uegpYWIFC7uyeMpVkEIGB5thE
 
 {
-  "userId": "d788cac3-32c5-47d4-92e2-7dd4ad3c7290",
-  "deviceName": "chuche test",    
-  "macAddress": "v1:21:YY:8t:22:01",  
+  "userId": "c6dc50ab-21ca-4f82-a946-318615c4cb47",
+  "deviceName": "uno mas",    
+  "macAddress": "A1:31:YY:8t:22:01",  
   "channel": 1,
   "longitude": -116.606,
   "latitude": 31.8153   
 }
 
 ###
-PATCH {{api}}/9cff0222-3243-4176-bb62-554f161eb113/lost
+PATCH {{api}}/58594193-6d75-407e-b257-af4ecc6ff792/lost
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3ODhjYWMzLTMyYzUtNDdkNC05MmUyLTdkZDRhZDNjNzI5MCIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDUxMTV9.8RtHwwI0Px2KY-8ItqOxCkJZFuDDCE0D-Q1FU6WhBg0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2ZGM1MGFiLTIxY2EtNGY4Mi1hOTQ2LTMxODYxNWM0Y2I0NyIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDcxNjJ9.6aqXJL5U1zBWp20nL2uegpYWIFC7uyeMpVkEIGB5thE
 
 {
-  "deviceId": "9cff0222-3243-4176-bb62-554f161eb113"
+  "deviceId": "58594193-6d75-407e-b257-af4ecc6ff792"
+}
+
+###
+GET  {{api}}/user/c6dc50ab-21ca-4f82-a946-318615c4cb47
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2ZGM1MGFiLTIxY2EtNGY4Mi1hOTQ2LTMxODYxNWM0Y2I0NyIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDcxNjJ9.6aqXJL5U1zBWp20nL2uegpYWIFC7uyeMpVkEIGB5thE
+
+{
+  "userId": "c6dc50ab-21ca-4f82-a946-318615c4cb47"
 }
