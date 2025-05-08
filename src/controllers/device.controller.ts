@@ -11,6 +11,8 @@ const assignDeviceSchema = z.object({
   deviceName: z.string().optional(),
   macAddress: z.string(),
   channel: z.number().optional(),
+  longitude: z.number(),
+  latitude: z.number(),
 });
 
 export const assignDeviceToUser = async (req: Request, res: Response): Promise<any> => {
@@ -25,7 +27,7 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
       return res.status(400).json({ error: validation.error.format() });
     }
 
-    const { userId, deviceName, macAddress, channel } = validation.data;
+    const { userId, deviceName, macAddress, channel, longitude, latitude } = validation.data;
 
     // Verificar permisos
     if (decoded.id !== userId) {
@@ -58,6 +60,13 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
         }
       });
 
+      await tx.user.update({
+        where: {id : userId},
+        data: {
+          update_date: new Date()
+        }
+      })
+
       await tx.deviceConfiguration.create({
         data: {
           id_device: device.id_device,
@@ -67,9 +76,23 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
         }
       });
 
+      await tx.locations.create({
+        data:{
+          id_device: device.id_device,
+          longitude,
+          latitude
+        }
+      })
+
       return tx.device.findUnique({
         where: { id_device: device.id_device },
-        include: { configuration: true }
+        include: { 
+          configuration: true,
+          locations: {
+            orderBy: {date_l: 'desc'},
+            take: 1
+          }
+        }
       });
     });
 
@@ -83,19 +106,31 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
 };
 
 export const markDeviceAsLost = async (req: Request, res: Response): Promise<any> => {
-  const { deviceId } = req.params;
+  const token = req.headers.authorization?.split(' ')[1];
+  if(!token) return res.status(401).json({error: 'jwt invalido'});
 
   try {
+    const decoded = jwt.verify(token, SECRET_KEY) as {id: string};
+    const { deviceId } = req.params;
+
     // Verificar si el dispositivo existe
     const device = await prisma.device.findUnique({ where: { id_device: deviceId } });
     if (!device) {
       return res.status(404).json({ error: 'Dispositivo no encontrado' });
     }
 
+    if (device.userId !== decoded.id) {
+      return res.status(403).json({ error: 'No tiene permisos sobre este dispositivo' });
+    }
+
     // Actualizar el estado del dispositivo a 'perdido'
     const updatedDevice = await prisma.device.update({
-      where: { id_device: deviceId },
-      data: { status_d: 'perdido' },
+      where: {id_device: deviceId},
+      data: {
+        status_d: 'perdido',
+        update_date: new Date()
+      },
+      include: { configuration: true }
     });
 
     return res.status(200).json({ message: 'Dispositivo marcado como perdido', device: updatedDevice });

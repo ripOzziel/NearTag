@@ -28,7 +28,6 @@ model User {
   phone_number  String
   email         String       @unique
   password_u    String
-  device_id     String?      @unique
   creation_date DateTime     @default(now())
   update_date   DateTime?
   connections   Connection[]

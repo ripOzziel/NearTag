@@ -2614,7 +2614,6 @@ export namespace Prisma {
     phone_number: string | null
     email: string | null
     password_u: string | null
-    device_id: string | null
     creation_date: Date | null
     update_date: Date | null
     jwt_hash: string | null
@@ -2626,7 +2625,6 @@ export namespace Prisma {
     phone_number: string | null
     email: string | null
     password_u: string | null
-    device_id: string | null
     creation_date: Date | null
     update_date: Date | null
     jwt_hash: string | null
@@ -2652,7 +2650,6 @@ export namespace Prisma {
     phone_number?: true
     email?: true
     password_u?: true
-    device_id?: true
     creation_date?: true
     update_date?: true
     jwt_hash?: true
@@ -2664,7 +2661,6 @@ export namespace Prisma {
     phone_number?: true
     email?: true
     password_u?: true
-    device_id?: true
     creation_date?: true
     update_date?: true
     jwt_hash?: true
@@ -2761,7 +2757,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id: string | null
+    device_id: string[]
     creation_date: Date
     update_date: Date | null
     jwt_hash: string | null
@@ -2856,7 +2852,7 @@ export namespace Prisma {
       phone_number: string
       email: string
       password_u: string
-      device_id: string | null
+      device_id: string[]
       creation_date: Date
       update_date: Date | null
       jwt_hash: string | null
@@ -3290,7 +3286,7 @@ export namespace Prisma {
     readonly phone_number: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password_u: FieldRef<"User", 'String'>
-    readonly device_id: FieldRef<"User", 'String'>
+    readonly device_id: FieldRef<"User", 'String[]'>
     readonly creation_date: FieldRef<"User", 'DateTime'>
     readonly update_date: FieldRef<"User", 'DateTime'>
     readonly jwt_hash: FieldRef<"User", 'String'>
@@ -8392,7 +8388,7 @@ export namespace Prisma {
     phone_number?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password_u?: StringFilter<"User"> | string
-    device_id?: StringNullableFilter<"User"> | string | null
+    device_id?: StringNullableListFilter<"User">
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableFilter<"User"> | string | null
@@ -8406,7 +8402,7 @@ export namespace Prisma {
     phone_number?: SortOrder
     email?: SortOrder
     password_u?: SortOrder
-    device_id?: SortOrderInput | SortOrder
+    device_id?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
     jwt_hash?: SortOrderInput | SortOrder
@@ -8417,19 +8413,19 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
-    device_id?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     username?: StringFilter<"User"> | string
     phone_number?: StringFilter<"User"> | string
     password_u?: StringFilter<"User"> | string
+    device_id?: StringNullableListFilter<"User">
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableFilter<"User"> | string | null
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
-  }, "id" | "email" | "device_id">
+  }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8437,7 +8433,7 @@ export namespace Prisma {
     phone_number?: SortOrder
     email?: SortOrder
     password_u?: SortOrder
-    device_id?: SortOrderInput | SortOrder
+    device_id?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
     jwt_hash?: SortOrderInput | SortOrder
@@ -8455,7 +8451,7 @@ export namespace Prisma {
     phone_number?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password_u?: StringWithAggregatesFilter<"User"> | string
-    device_id?: StringNullableWithAggregatesFilter<"User"> | string | null
+    device_id?: StringNullableListFilter<"User">
     creation_date?: DateTimeWithAggregatesFilter<"User"> | Date | string
     update_date?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -8769,7 +8765,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -8783,7 +8779,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -8797,7 +8793,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8811,7 +8807,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8825,7 +8821,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -8837,7 +8833,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8849,7 +8845,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9222,6 +9218,14 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9261,7 +9265,6 @@ export namespace Prisma {
     phone_number?: SortOrder
     email?: SortOrder
     password_u?: SortOrder
-    device_id?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrder
     jwt_hash?: SortOrder
@@ -9273,7 +9276,6 @@ export namespace Prisma {
     phone_number?: SortOrder
     email?: SortOrder
     password_u?: SortOrder
-    device_id?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrder
     jwt_hash?: SortOrder
@@ -9681,6 +9683,10 @@ export namespace Prisma {
     deleteMany?: RecordScalarWhereInput | RecordScalarWhereInput[]
   }
 
+  export type UserCreatedevice_idInput = {
+    set: string[]
+  }
+
   export type ConnectionCreateNestedManyWithoutUserInput = {
     create?: XOR<ConnectionCreateWithoutUserInput, ConnectionUncheckedCreateWithoutUserInput> | ConnectionCreateWithoutUserInput[] | ConnectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ConnectionCreateOrConnectWithoutUserInput | ConnectionCreateOrConnectWithoutUserInput[]
@@ -9707,6 +9713,11 @@ export namespace Prisma {
     connectOrCreate?: DeviceCreateOrConnectWithoutUserInput | DeviceCreateOrConnectWithoutUserInput[]
     createMany?: DeviceCreateManyUserInputEnvelope
     connect?: DeviceWhereUniqueInput | DeviceWhereUniqueInput[]
+  }
+
+  export type UserUpdatedevice_idInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -10125,7 +10136,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -10138,7 +10149,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -10272,7 +10283,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10285,7 +10296,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10543,7 +10554,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -10556,7 +10567,7 @@ export namespace Prisma {
     phone_number: string
     email: string
     password_u: string
-    device_id?: string | null
+    device_id?: UserCreatedevice_idInput | string[]
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
@@ -10618,7 +10629,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10631,7 +10642,7 @@ export namespace Prisma {
     phone_number?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password_u?: StringFieldUpdateOperationsInput | string
-    device_id?: NullableStringFieldUpdateOperationsInput | string | null
+    device_id?: UserUpdatedevice_idInput | string[]
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
