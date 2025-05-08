@@ -207,12 +207,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://oziel:elshonshimmy@localhost:5432/neartag_db?schema=neartag_shemma"
       }
     }
   },
