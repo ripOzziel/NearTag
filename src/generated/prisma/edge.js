@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/hector/development/tryTag/src/generated/prisma",
+      "value": "/home/ripozziel/Escritorio/Backend/neartag/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -192,7 +192,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/hector/development/tryTag/prisma/schema.prisma",
+    "sourceFilePath": "/home/ripozziel/Escritorio/Backend/neartag/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
