@@ -1,44 +1,83 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import  prisma  from '../lib/prisma.js';
 import { z } from 'zod';
+
+const SECRET_KEY = process.env.SECRET_KEY!;
 
 // Esquema de validación para la asignación de dispositivos
 const assignDeviceSchema = z.object({
   userId: z.string().uuid(),
-  deviceId: z.string().uuid(),
+  deviceName: z.string().optional(),
+  macAddress: z.string(),
+  channel: z.number().optional(),
 });
 
 export const assignDeviceToUser = async (req: Request, res: Response): Promise<any> => {
-  const validation = assignDeviceSchema.safeParse(req.body);
+  const token = req.headers.authorization?.split(' ')[1];
+  if(!token) return res.status(401).json({error: 'jwt invalido'});
 
-  if (!validation.success) {
-    return res.status(400).json({ error: validation.error.format() });
-  }
+  try{
+    const decoded = jwt.verify(token, SECRET_KEY) as {id: string};
 
-  const { userId, deviceId } = validation.data;
-
-  try {
-    // Verificar si el dispositivo ya está asociado a otro usuario
-    const existingDevice = await prisma.device.findUnique({
-      where: { id_device: deviceId },
-    });
-
-    if (!existingDevice) {
-      return res.status(404).json({ error: 'Dispositivo no encontrado' });
+    const validation = assignDeviceSchema.safeParse(req.body);
+    if (!validation.success) {
+      return res.status(400).json({ error: validation.error.format() });
     }
 
-    if (existingDevice.userId && existingDevice.userId !== userId) {
-      return res.status(403).json({ error: 'El dispositivo ya está asociado a otro usuario' });
-    }
+    const { userId, deviceName, macAddress, channel } = validation.data;
 
-    // Asignar el dispositivo al usuario
-    const updatedDevice = await prisma.device.update({
-      where: { id_device: deviceId },
-      data: { userId },
+    // Verificar permisos
+    if (decoded.id !== userId) {
+      return res.status(403).json({ error: 'No tiene permisos para asignar este dispositivo' });
+    }
+    
+    // Verificar que el usuario existe
+    const user = await prisma.user.findUnique({
+      where: { id: userId }
+    });
+    
+    if (!user) { return res.status(404).json({ error: 'Usuario no encontrado' }); }
+
+    const existingDeviceWithMac = await prisma.deviceConfiguration.findFirst({
+      where: { mac_address: macAddress }
     });
 
-    return res.status(200).json({ message: 'Dispositivo asignado correctamente', device: updatedDevice });
-  } catch (err) {
+    if (existingDeviceWithMac) {
+      return res.status(409).json({ error: 'la dirección MAC ya está registrada en otro dispositivo' });
+    }
+
+    // usar transacción para garantizar la integridad de datos
+    const newDevice = await prisma.$transaction(async (tx) => {
+      const device = await tx.device.create({
+        data: {
+          name_device: deviceName || 'default',
+          status_d: "activo", 
+          userId,
+          update_date: new Date()
+        }
+      });
+
+      await tx.deviceConfiguration.create({
+        data: {
+          id_device: device.id_device,
+          device_name: deviceName || 'default',
+          mac_address: macAddress,
+          channel: channel ?? 0
+        }
+      });
+
+      return tx.device.findUnique({
+        where: { id_device: device.id_device },
+        include: { configuration: true }
+      });
+    });
+
+    return res.status(201).json({ 
+      message: 'dispositivo asignado correctamente', 
+      device: newDevice 
+    });
+  }catch (err){
     return res.status(500).json({ error: 'Error al asignar el dispositivo', detail: err });
   }
 };

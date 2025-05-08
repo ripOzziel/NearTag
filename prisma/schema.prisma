@@ -17,7 +17,9 @@ model Device {
   configuration DeviceConfiguration?
   locations     Locations[]
   records       Record[]
+
   userId        String?
+  user          User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model User {
@@ -30,6 +32,9 @@ model User {
   creation_date DateTime     @default(now())
   update_date   DateTime?
   connections   Connection[]
+
+  devices       Device[]
+  jwt_hash      String?
 }
 
 model Locations {

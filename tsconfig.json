@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",           // Formato de módulos modernos
-    "moduleResolution": "NodeNext", // Resolución de módulos para Node.js moderno
-    "esModuleInterop": true,        // Interoperabilidad entre CommonJS y ES Modules
+    "module": "NodeNext",           
+    "moduleResolution": "NodeNext", 
+    "esModuleInterop": true,        
     "allowSyntheticDefaultImports": true,
-    "strict": true,                 // Habilita todas las comprobaciones estrictas
+    "strict": true,                 
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",               // Directorio de salida
-    "rootDir": "/",               // Directorio fuente
-    "skipLibCheck": true,
+    "outDir": "dist",               
+    "rootDir": "/",               
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

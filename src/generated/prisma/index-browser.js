@@ -136,7 +136,8 @@ exports.Prisma.UserScalarFieldEnum = {
   password_u: 'password_u',
   device_id: 'device_id',
   creation_date: 'creation_date',
-  update_date: 'update_date'
+  update_date: 'update_date',
+  jwt_hash: 'jwt_hash'
 };
 
 exports.Prisma.LocationsScalarFieldEnum = {

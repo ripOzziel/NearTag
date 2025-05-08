@@ -17,5 +17,17 @@ Content-Type: application/json
 
 {
     "email": "al21760277@ite.edu.mx",
-    "password": "password1"
+    "password": "password"
+}
+
+###
+POST {{api}}/assign
+Content-Type: application/json
+Authorization: Bearer jwt
+
+{
+  "userId": "0c0e6b9a-4b19-4589-a07a-279c0ef64b05",
+  "deviceName": "chuche test",    
+  "macAddress": "d8:f3:bc:5b:22:95",  
+  "channel": 1    
 }

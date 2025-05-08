@@ -6,7 +6,8 @@ export const deviceSchema = z.object({
     id_device: z.string().uuid().optional(),
     name_device: z.string().max(20),
     status_d: z.string().max(1),
-    update_date: z.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/).optional()
+    update_date: z.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/).optional(),
+    userId: z.string().uuid().optional(),
   });
 
 const deviceIdSchema = z.object({

@@ -75,7 +75,16 @@ export const getUser = async (req: Request, res: Response): Promise<any> => {
       email: user.email
     }, SECRET_KEY);
 
-    return res.status(200).json({token});
+    const jwtHash = await bcrypt.hash(token, 10);
+
+    await prisma.user.update({
+      where: {email},
+      data: {
+        jwt_hash: jwtHash
+      }
+    });
+
+    return res.status(201).json({token});
   } catch (err){
     return res.status(500).json({
       error: 'error al iniciar sesion',
