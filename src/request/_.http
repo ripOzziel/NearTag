@@ -10,3 +10,12 @@ Content-Type: application/json
   "password_u": "password",
   "creation_date": "2025-05-08T10:00:00Z"
 }
+
+###
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "email": "al21760277@ite.edu.mx",
+    "password": "password1"
+}
