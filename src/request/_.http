@@ -1,0 +1,12 @@
+@api = http://localhost:3000
+
+POST {{api}}/
+Content-Type: application/json
+
+{
+  "username": "hector",
+  "phone_number": "6462705566",
+  "email": "al21760277@ite.edu.mx",
+  "password_u": "password",
+  "creation_date": "2025-05-08T10:00:00Z"
+}

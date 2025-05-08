@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Device {
+  id_device     String               @id @default(uuid())
+  name_device   String
+  status_d      String
+  update_date   DateTime?
+  connections   Connection[]
+  configuration DeviceConfiguration?
+  locations     Locations[]
+  records       Record[]
+  userId        String?
+}
+
+model User {
+  id            String       @id @default(uuid())
+  username      String
+  phone_number  String
+  email         String       @unique
+  password_u    String
+  device_id     String?      @unique
+  creation_date DateTime     @default(now())
+  update_date   DateTime?
+  connections   Connection[]
+}
+
+model Locations {
+  id        Int      @id @default(autoincrement())
+  id_device String
+  longitude Float
+  latitude  Float
+  date_l    DateTime @default(now())
+  device    Device   @relation(fields: [id_device], references: [id_device], onDelete: SetNull)
+}
+
+model DeviceConfiguration {
+  id          Int    @id @default(autoincrement())
+  id_device   String @unique
+  device_name String
+  mac_address String
+  channel     Int
+  device      Device @relation(fields: [id_device], references: [id_device], onDelete: SetNull)
+}
+
+model Connection {
+  id                    Int    @id @default(autoincrement())
+  id_usuario            String
+  name_usuario_invitado String
+  id_device             String
+  type_connection       String
+  device                Device @relation(fields: [id_device], references: [id_device], onDelete: Cascade)
+  user                  User   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+}
+
+model Record {
+  id        Int      @id @default(autoincrement())
+  id_device String
+  longitude Float
+  latitude  Float
+  date_r    DateTime @default(now())
+  device    Device   @relation(fields: [id_device], references: [id_device], onDelete: Cascade)
+}
