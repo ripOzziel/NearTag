@@ -15,7 +15,14 @@ export const createUser = async (req: Request, res: Response): Promise<any> => {
   }
 
   const { username, phone_number, email, password_u, creation_date } = validation.data;
+  const uniqueEmail = await prisma.user.findUnique({
+    where: { email },
+  });
 
+  if(uniqueEmail) return res.status(401).json({
+    error: 'este email ya esta registrado en otra cuenta'
+  });
+  
   try {
     const hashedPassword = await bcrypt.hash(password_u, 10);
 
