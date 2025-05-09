@@ -149,7 +149,7 @@ export const getUserDevices = async (req: Request, res: Response): Promise<any> 
     // Verificar si el usuario existe
     const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user) {
-      return res.status(404).json({ error: 'Dispositivo no encontrado' });
+      return res.status(404).json({ error: 'usuario no encontrado' });
     }
 
     if (user.id !== decoded.id) {
@@ -182,28 +182,33 @@ export const getUserDevices = async (req: Request, res: Response): Promise<any> 
 };
 
 export const removeDeviceFromUser = async (req: Request, res: Response): Promise<any> => {
-  const { userId, deviceId } = req.params; // IDs del usuario y del dispositivo
+  const token = req.headers.authorization?.split(' ')[1];
+  if(!token) return res.status(401).json({error: 'jwt invalido'});
 
   try {
+    const decoded = jwt.verify(token, SECRET_KEY) as {id: string};
+    const { deviceId } = req.params; // IDs del usuario y del dispositivo
+
     // Verificar si el dispositivo existe
-    const device = await prisma.device.findUnique({ where: { id_device: deviceId } });
+    const device = await prisma.device.findUnique({ where: { id_device: deviceId }, include: { user: true } });
     if (!device) {
       return res.status(404).json({ error: 'Dispositivo no encontrado' });
     }
 
-    // Verificar si el dispositivo está asociado al usuario
-    if (device.userId !== userId) {
-      return res.status(403).json({ error: 'El dispositivo no está asociado a este usuario' });
+    if (device.userId !== decoded.id) {
+      return res.status(403).json({ error: 'No tiene permisos sobre este dispositivo' });
     }
 
-    // Eliminar la asociación del dispositivo con el usuario
-    const updatedDevice = await prisma.device.update({
-      where: { id_device: deviceId },
-      data: { userId: null }, // Eliminar la asociación
-    });
+    //se deben eliminar tambien las relaciones de fk q tenia
+    await prisma.deviceConfiguration.deleteMany({ where: { id_device: deviceId } });
+    await prisma.locations.deleteMany({ where: { id_device: deviceId } });
+    await prisma.record.deleteMany({ where: { id_device: deviceId } });
+    await prisma.connection.deleteMany({ where: { id_device: deviceId } });
 
-    return res.status(200).json({ message: 'El dispositivo ha sido eliminado correctamente', device: updatedDevice });
+    await prisma.device.delete({where: {id_device: deviceId }});    
+    return res.status(200).json({ message: 'neartag eliminado correctamente'});
   } catch (err) {
-    return res.status(500).json({ error: 'Error al eliminar el dispositivo', detail: err });
+
+    return res.status(500).json({ error: 'Error al eliminar el neartag', detail: err });
   }
 };

@@ -50,3 +50,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2ZGM1MGFiL
 {
   "userId": "c6dc50ab-21ca-4f82-a946-318615c4cb47"
 }
+
+###
+DELETE {{api}}/85985662-af6f-492a-a0c4-c27024ac9209/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2ZGM1MGFiLTIxY2EtNGY4Mi1hOTQ2LTMxODYxNWM0Y2I0NyIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NDcxNjJ9.6aqXJL5U1zBWp20nL2uegpYWIFC7uyeMpVkEIGB5thE
+
+{
+  "deviceId": "85985662-af6f-492a-a0c4-c27024ac9209"
+}
