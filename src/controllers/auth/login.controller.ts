@@ -27,12 +27,14 @@ export const getUser = async (req: Request, res: Response): Promise<any> => {
       error: 'constraseña incorrecta'
     });
 
+    //! PONERLE TIEMPO DE EXPIRACION
+    //! PONERLE UN LIMITE DE PETICIONES A CADA TOKEN
     const token = jwt.sign({
       id: user.id,
       username: user.username,
       email: user.email,
       tokenVersion: user.jwt_version
-    }, SECRET_KEY); //unix time
+    }, SECRET_KEY); //unix time 
 
     const jwtHash = await bcrypt.hash(token, 10);
 

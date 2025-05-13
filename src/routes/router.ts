@@ -31,4 +31,10 @@ router.patch('/user/:userId/phone-number', authMiddleware, updatePhoneNumber);
 router.patch('/user/:userId/password', authMiddleware, updatePassword);
 router.get('/user/:userId', authMiddleware, getUserData);
 
+
+//! endpoints para administradores
+//! agregar un endpoint para que un administrador pueda eliminar dispositivos
+//! tambien obtener el numero de dispositivos activos, perdidos, apagados
+
+
 export default router;
