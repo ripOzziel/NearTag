@@ -32,8 +32,9 @@ model User {
   update_date   DateTime?
   connections   Connection[]
 
-  devices  Device[]
-  jwt_hash String?
+  devices     Device[]
+  jwt_hash    String?
+  jwt_version Int      @default(0)
 }
 
 model Locations {

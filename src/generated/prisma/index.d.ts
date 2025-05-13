@@ -2604,8 +2604,18 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    jwt_version: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    jwt_version: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -2617,6 +2627,7 @@ export namespace Prisma {
     creation_date: Date | null
     update_date: Date | null
     jwt_hash: string | null
+    jwt_version: number | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2628,6 +2639,7 @@ export namespace Prisma {
     creation_date: Date | null
     update_date: Date | null
     jwt_hash: string | null
+    jwt_version: number | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2639,9 +2651,18 @@ export namespace Prisma {
     creation_date: number
     update_date: number
     jwt_hash: number
+    jwt_version: number
     _all: number
   }
 
+
+  export type UserAvgAggregateInputType = {
+    jwt_version?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    jwt_version?: true
+  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -2652,6 +2673,7 @@ export namespace Prisma {
     creation_date?: true
     update_date?: true
     jwt_hash?: true
+    jwt_version?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2663,6 +2685,7 @@ export namespace Prisma {
     creation_date?: true
     update_date?: true
     jwt_hash?: true
+    jwt_version?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2674,6 +2697,7 @@ export namespace Prisma {
     creation_date?: true
     update_date?: true
     jwt_hash?: true
+    jwt_version?: true
     _all?: true
   }
 
@@ -2715,6 +2739,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -2745,6 +2781,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -2758,7 +2796,10 @@ export namespace Prisma {
     creation_date: Date
     update_date: Date | null
     jwt_hash: string | null
+    jwt_version: number
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -2786,6 +2827,7 @@ export namespace Prisma {
     creation_date?: boolean
     update_date?: boolean
     jwt_hash?: boolean
+    jwt_version?: boolean
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2800,6 +2842,7 @@ export namespace Prisma {
     creation_date?: boolean
     update_date?: boolean
     jwt_hash?: boolean
+    jwt_version?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2811,6 +2854,7 @@ export namespace Prisma {
     creation_date?: boolean
     update_date?: boolean
     jwt_hash?: boolean
+    jwt_version?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2822,9 +2866,10 @@ export namespace Prisma {
     creation_date?: boolean
     update_date?: boolean
     jwt_hash?: boolean
+    jwt_version?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_hash", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_hash" | "jwt_version", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
@@ -2848,6 +2893,7 @@ export namespace Prisma {
       creation_date: Date
       update_date: Date | null
       jwt_hash: string | null
+      jwt_version: number
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3281,6 +3327,7 @@ export namespace Prisma {
     readonly creation_date: FieldRef<"User", 'DateTime'>
     readonly update_date: FieldRef<"User", 'DateTime'>
     readonly jwt_hash: FieldRef<"User", 'String'>
+    readonly jwt_version: FieldRef<"User", 'Int'>
   }
     
 
@@ -8164,7 +8211,8 @@ export namespace Prisma {
     password_u: 'password_u',
     creation_date: 'creation_date',
     update_date: 'update_date',
-    jwt_hash: 'jwt_hash'
+    jwt_hash: 'jwt_hash',
+    jwt_version: 'jwt_version'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8381,6 +8429,7 @@ export namespace Prisma {
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableFilter<"User"> | string | null
+    jwt_version?: IntFilter<"User"> | number
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
   }
@@ -8394,6 +8443,7 @@ export namespace Prisma {
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
     jwt_hash?: SortOrderInput | SortOrder
+    jwt_version?: SortOrder
     connections?: ConnectionOrderByRelationAggregateInput
     devices?: DeviceOrderByRelationAggregateInput
   }
@@ -8410,6 +8460,7 @@ export namespace Prisma {
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableFilter<"User"> | string | null
+    jwt_version?: IntFilter<"User"> | number
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
   }, "id" | "email">
@@ -8423,9 +8474,12 @@ export namespace Prisma {
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
     jwt_hash?: SortOrderInput | SortOrder
+    jwt_version?: SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -8440,6 +8494,7 @@ export namespace Prisma {
     creation_date?: DateTimeWithAggregatesFilter<"User"> | Date | string
     update_date?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     jwt_hash?: StringNullableWithAggregatesFilter<"User"> | string | null
+    jwt_version?: IntWithAggregatesFilter<"User"> | number
   }
 
   export type LocationsWhereInput = {
@@ -8753,6 +8808,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     connections?: ConnectionCreateNestedManyWithoutUserInput
     devices?: DeviceCreateNestedManyWithoutUserInput
   }
@@ -8766,6 +8822,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8779,6 +8836,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     connections?: ConnectionUpdateManyWithoutUserNestedInput
     devices?: DeviceUpdateManyWithoutUserNestedInput
   }
@@ -8792,6 +8850,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8805,6 +8864,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8816,6 +8876,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8827,6 +8888,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
   }
 
   export type LocationsCreateInput = {
@@ -9207,6 +9269,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type DeviceListRelationFilter = {
     every?: DeviceWhereInput
     some?: DeviceWhereInput
@@ -9226,6 +9299,11 @@ export namespace Prisma {
     creation_date?: SortOrder
     update_date?: SortOrder
     jwt_hash?: SortOrder
+    jwt_version?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    jwt_version?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -9237,6 +9315,7 @@ export namespace Prisma {
     creation_date?: SortOrder
     update_date?: SortOrder
     jwt_hash?: SortOrder
+    jwt_version?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -9248,6 +9327,11 @@ export namespace Prisma {
     creation_date?: SortOrder
     update_date?: SortOrder
     jwt_hash?: SortOrder
+    jwt_version?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    jwt_version?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -9264,7 +9348,7 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9272,7 +9356,12 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -9325,22 +9414,6 @@ export namespace Prisma {
     id?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -9684,6 +9757,14 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type ConnectionUpdateManyWithoutUserNestedInput = {
     create?: XOR<ConnectionCreateWithoutUserInput, ConnectionUncheckedCreateWithoutUserInput> | ConnectionCreateWithoutUserInput[] | ConnectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ConnectionCreateOrConnectWithoutUserInput | ConnectionCreateOrConnectWithoutUserInput[]
@@ -9760,14 +9841,6 @@ export namespace Prisma {
     upsert?: DeviceUpsertWithoutLocationsInput
     connect?: DeviceWhereUniqueInput
     update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutLocationsInput, DeviceUpdateWithoutLocationsInput>, DeviceUncheckedUpdateWithoutLocationsInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type DeviceCreateNestedOneWithoutConfigurationInput = {
@@ -9960,17 +10033,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9985,6 +10047,17 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -10099,6 +10172,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     connections?: ConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -10111,6 +10185,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -10244,6 +10319,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     connections?: ConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -10256,6 +10332,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -10513,6 +10590,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     devices?: DeviceCreateNestedManyWithoutUserInput
   }
 
@@ -10525,6 +10603,7 @@ export namespace Prisma {
     creation_date?: Date | string
     update_date?: Date | string | null
     jwt_hash?: string | null
+    jwt_version?: number
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -10586,6 +10665,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     devices?: DeviceUpdateManyWithoutUserNestedInput
   }
 
@@ -10598,6 +10678,7 @@ export namespace Prisma {
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
   }
 

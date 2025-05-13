@@ -34,6 +34,7 @@ model User {
 
   devices       Device[]
   jwt_hash      String?
+  jwt_version   Int         @default(0)          
 }
 
 model Locations {
