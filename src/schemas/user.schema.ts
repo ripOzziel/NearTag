@@ -11,8 +11,8 @@ export const userSchema = z.object({
   //device_id: z.string().uuid().nullable().optional(),
   creation_date: z.date().optional(),
   update_date: z.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/).optional(),
-  jwt_hash: z.string().optional(),
-  jwt_version: z.number().optional()
+  jwt_version: z.number().optional(),
+  last_login: z.date().optional()
 });
 
 const userIdSchema = z.object({

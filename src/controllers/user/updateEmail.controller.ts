@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
 import prisma from '../../lib/prisma.js';
 import { z } from 'zod';
 
@@ -12,6 +11,7 @@ export const updateEmail = async (req: Request, res: Response): Promise<any> => 
 
     const { userId } = req.params;
     const authId = req.user?.id;
+    const tokenId = req.tokenId!;
   
     const parse = emailSchema.safeParse(req.body);
     if (!parse.success) {
@@ -38,6 +38,13 @@ export const updateEmail = async (req: Request, res: Response): Promise<any> => 
         if (!passwordMatches) {
           return res.status(401).json({ error: 'La contraseña actual es incorrecta' });
         }
+
+        await prisma.jwtActivity.create({
+          data:{
+            tokenId: tokenId,
+            action: 'actualizar el correo del usuario'
+          }
+        })
 
         await prisma.user.update({
             where: { id: userId },

@@ -14,7 +14,8 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
 
     try{
       const authId = req.user?.id;
-  
+      const tokenId = req.tokenId!;
+
       const validation = assignDeviceSchema.safeParse(req.body);
       if (!validation.success) {
         return res.status(400).json({ error: validation.error.format() });
@@ -44,6 +45,13 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
   
       // usar transacción para garantizar la integridad de datos
       const newDevice = await prisma.$transaction(async (tx) => {
+        await  tx.jwtActivity.create({
+          data:{
+            tokenId: tokenId,
+            action: 'asignar un dispositivo'
+          }
+        })
+
         const device = await tx.device.create({
           data: {
             name_device: deviceName || 'default',
@@ -53,6 +61,7 @@ export const assignDeviceToUser = async (req: Request, res: Response): Promise<a
           }
         });
   
+
         await tx.user.update({
           where: {id : userId},
           data: {

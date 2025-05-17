@@ -1,91 +1,143 @@
 {
-    "users": {
-      "type": "object",
-      "required": ["username", "phone_number", "email", "password_u", "creation_date"],
-      "properties": {
-        "id": { "type": "string", "format": "uuid" },
-        "username": { "type": "string", "minLength": 4, "maxLength": 30 },
-        "phone_number": { "type": "string", "maxLength": 15 },
-        "email": { "type": "string", "format": "email" },
-        "password_u": { "type": "string", "minLength": 8, "maxLength": 60 },
-        "device_id": { "type": ["string", "null"], "format": "uuid" },
-        "creation_date": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
-        },
-        "update_date": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
-        }
+  "users": {
+    "type": "object",
+    "required": ["username", "phone_number", "email", "password_u", "creation_date"],
+    "properties": {
+      "id": { "type": "string", "format": "uuid" },
+      "username": { "type": "string", "minLength": 4, "maxLength": 30 },
+      "phone_number": { "type": "string", "maxLength": 15 },
+      "email": { "type": "string", "format": "email" },
+      "password_u": { "type": "string", "minLength": 8, "maxLength": 60 },
+      "creation_date": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+      },
+      "update_date": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+      },
+      "jwt_version": { "type": "integer", "minimum": 0, "default": 0 },
+      "last_login": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
       }
-    },
-  
-    "devices": {
-      "type": "object",
-      "required": ["name_device", "status_d"],
-      "properties": {
-        "id_device": { "type": "string", "format": "uuid" },
-        "name_device": { "type": "string", "maxLength": 20 },
-        "status_d": { "type": "string", "maxLength": 1 },
-        "update_date": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
-        }
+    }
+  },
+
+  "devices": {
+    "type": "object",
+    "required": ["name_device", "status_d"],
+    "properties": {
+      "id_device": { "type": "string", "format": "uuid" },
+      "name_device": { "type": "string", "maxLength": 20 },
+      "status_d": { "type": "string", "maxLength": 1 },
+      "update_date": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+      },
+      "userId": { "type": ["string", "null"], "format": "uuid" }
+    }
+  },
+
+  "locations": {
+    "type": "object",
+    "required": ["id_device", "longitude", "latitude"],
+    "properties": {
+      "id": { "type": "integer" },
+      "id_device": { "type": "string", "format": "uuid" },
+      "longitude": { "type": "number" },
+      "latitude": { "type": "number" },
+      "date_l": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$",
+        "default": "now()"
       }
-    },
-  
-    "locations": {
-      "type": "object",
-      "required": ["id_device", "longitude", "latitude", "date_l"],
-      "properties": {
-        "id_device": { "type": "string", "format": "uuid" },
-        "longitude": { "type": "number" },
-        "latitude": { "type": "number" },
-        "date_l": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
-        }
+    }
+  },
+
+  "device_configuration": {
+    "type": "object",
+    "required": ["id_device", "device_name", "mac_address", "channel"],
+    "properties": {
+      "id": { "type": "integer" },
+      "id_device": { "type": "string", "format": "uuid" },
+      "device_name": { "type": "string", "maxLength": 25 },
+      "mac_address": {
+        "type": "string",
+        "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+        "maxLength": 20
+      },
+      "channel": { "type": "integer" }
+    }
+  },
+
+  "connection": {
+    "type": "object",
+    "required": ["id_usuario", "name_usuario_invitado", "id_device", "type_connection"],
+    "properties": {
+      "id": { "type": "integer" },
+      "id_usuario": { "type": "string", "format": "uuid" },
+      "name_usuario_invitado": { "type": "string" },
+      "id_device": { "type": "string", "format": "uuid" },
+      "type_connection": { "type": "string", "maxLength": 10 }
+    }
+  },
+
+  "record": {
+    "type": "object",
+    "required": ["id_device", "longitude", "latitude"],
+    "properties": {
+      "id": { "type": "integer" },
+      "id_device": { "type": "string", "format": "uuid" },
+      "longitude": { "type": "number" },
+      "latitude": { "type": "number" },
+      "date_r": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$",
+        "default": "now()"
       }
-    },
-  
-    "device_configuration": {
-      "type": "object",
-      "required": ["id_device", "device_name", "mac_address", "channel"],
-      "properties": {
-        "id_device": { "type": "string", "format": "uuid" },
-        "device_name": { "type": "string", "maxLength": 25 },
-        "mac_address": {
-          "type": "string",
-          "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
-          "maxLength": 20
-        },
-        "channel": { "type": "integer" }
-      }
-    },
-  
-    "connection": {
-      "type": "object",
-      "required": ["id_usuario", "nombre_usuario_invitado", "id_device", "type_connection"],
-      "properties": {
-        "id_usuario": { "type": "string", "format": "uuid" },
-        "nombre_usuario_invitado": { "type": "string" },
-        "id_device": { "type": "string", "format": "uuid" },
-        "type_connection": { "type": "string", "maxLength": 10 }
-      }
-    },
-  
-    "record": {
-      "type": "object",
-      "required": ["id_device", "longitude", "latitude", "date_r"],
-      "properties": {
-        "id_device": { "type": "string", "format": "uuid" },
-        "longitude": { "type": "number" },
-        "latitude": { "type": "number" },
-        "date_r": {
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
-        }
+    }
+  },
+
+  "jwt_token": {
+    "type": "object",
+    "required": ["tokenHash", "userId", "expiresAt"],
+    "properties": {
+      "id": { "type": "string", "format": "uuid" },
+      "tokenHash": { "type": "string" },
+      "userId": { "type": "string", "format": "uuid" },
+      "tokenType": { "type": "string", "default": "access" },
+      "createdAt": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$",
+        "default": "now()"
+      },
+      "expiresAt": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+      },
+      "lastUsedAt": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+      },
+      "useCount": { "type": "integer", "minimum": 0, "default": 0 },
+      "maxUses": { "type": "integer", "minimum": 1, "default": 20 },
+      "isRevoked": { "type": "boolean", "default": false }
+    }
+  },
+
+  "jwt_activity": {
+    "type": "object",
+    "required": ["tokenId", "action"],
+    "properties": {
+      "id": { "type": "integer" },
+      "tokenId": { "type": "string", "format": "uuid" },
+      "action": { "type": "string" },
+      "performedAt": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$",
+        "default": "now()"
       }
     }
   }
-  
+}

@@ -5,6 +5,8 @@ export const getUserDevices = async (req: Request, res: Response): Promise<any> 
     try {
       const { userId } = req.params;
       const authId = req.user?.id;
+      const tokenId = req.tokenId!;
+
       // Verificar si el usuario existe
       const user = await prisma.user.findUnique({ where: { id: userId } });
       if (!user) {
@@ -25,11 +27,17 @@ export const getUserDevices = async (req: Request, res: Response): Promise<any> 
           connections: true,
           configuration: true,
           locations: true,
-          records: true,
-          user: true
+          records: true
         },
       });
   
+      await prisma.jwtActivity.create({
+        data:{
+          tokenId: tokenId,
+          action: 'obtener todos los dispositivos del usuario'
+        }
+      })
+
       if (userDevices.length === 0) {
         return res.status(200).json({ message: 'No tienes dispositivos asociados.' });
       }

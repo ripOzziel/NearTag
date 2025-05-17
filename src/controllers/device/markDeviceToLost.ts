@@ -5,7 +5,8 @@ export const markDeviceAsLost = async (req: Request, res: Response): Promise<any
     try {
       const { deviceId } = req.params;
       const authId = req.user?.id;
-  
+      const tokenId = req.tokenId!;
+
       // Verificar si el dispositivo existe
       const device = await prisma.device.findUnique({ where: { id_device: deviceId } });
       if (!device) {
@@ -16,6 +17,13 @@ export const markDeviceAsLost = async (req: Request, res: Response): Promise<any
         return res.status(403).json({ error: 'No tiene permisos sobre este dispositivo' });
       }
   
+      await prisma.jwtActivity.create({
+        data:{
+          tokenId: tokenId,
+          action: 'marcar dispositivo como perdido'
+        }
+      })
+
       // Actualizar el estado del dispositivo a 'perdido'
       const updatedDevice = await prisma.device.update({
         where: {id_device: deviceId},

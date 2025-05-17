@@ -13,6 +13,7 @@ export const updatePassword = async (req: Request, res: Response): Promise<any> 
   
     const { userId } = req.params;
     const authId = req.user?.id;
+    const tokenId = req.tokenId!;
   
     const parse = passwordSchema.safeParse(req.body);
     if (!parse.success) {
@@ -35,6 +36,13 @@ export const updatePassword = async (req: Request, res: Response): Promise<any> 
         return res.status(401).json({ error: 'La contraseña actual es incorrecta' });
       }
       
+      await prisma.jwtActivity.create({
+        data:{
+          tokenId: tokenId,
+          action: 'actualizacion de contraseña del usuario'
+        }
+      })
+
       const hashedPassword = await bcrypt.hash(newPassword, 10);
       await prisma.user.update({
         where: { id: userId },

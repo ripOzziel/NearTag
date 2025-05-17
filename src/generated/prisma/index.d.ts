@@ -24,6 +24,16 @@ export type Device = $Result.DefaultSelection<Prisma.$DevicePayload>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model JwtToken
+ * 
+ */
+export type JwtToken = $Result.DefaultSelection<Prisma.$JwtTokenPayload>
+/**
+ * Model JwtActivity
+ * 
+ */
+export type JwtActivity = $Result.DefaultSelection<Prisma.$JwtActivityPayload>
+/**
  * Model Locations
  * 
  */
@@ -190,6 +200,26 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.jwtToken`: Exposes CRUD operations for the **JwtToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JwtTokens
+    * const jwtTokens = await prisma.jwtToken.findMany()
+    * ```
+    */
+  get jwtToken(): Prisma.JwtTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jwtActivity`: Exposes CRUD operations for the **JwtActivity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JwtActivities
+    * const jwtActivities = await prisma.jwtActivity.findMany()
+    * ```
+    */
+  get jwtActivity(): Prisma.JwtActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.locations`: Exposes CRUD operations for the **Locations** model.
     * Example usage:
     * ```ts
@@ -286,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -670,6 +700,8 @@ export namespace Prisma {
   export const ModelName: {
     Device: 'Device',
     User: 'User',
+    JwtToken: 'JwtToken',
+    JwtActivity: 'JwtActivity',
     Locations: 'Locations',
     DeviceConfiguration: 'DeviceConfiguration',
     Connection: 'Connection',
@@ -692,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "device" | "user" | "locations" | "deviceConfiguration" | "connection" | "record"
+      modelProps: "device" | "user" | "jwtToken" | "jwtActivity" | "locations" | "deviceConfiguration" | "connection" | "record"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -841,6 +873,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      JwtToken: {
+        payload: Prisma.$JwtTokenPayload<ExtArgs>
+        fields: Prisma.JwtTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JwtTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JwtTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.JwtTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JwtTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          findMany: {
+            args: Prisma.JwtTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>[]
+          }
+          create: {
+            args: Prisma.JwtTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          createMany: {
+            args: Prisma.JwtTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JwtTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.JwtTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          update: {
+            args: Prisma.JwtTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.JwtTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JwtTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JwtTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.JwtTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.JwtTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJwtToken>
+          }
+          groupBy: {
+            args: Prisma.JwtTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JwtTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JwtTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<JwtTokenCountAggregateOutputType> | number
+          }
+        }
+      }
+      JwtActivity: {
+        payload: Prisma.$JwtActivityPayload<ExtArgs>
+        fields: Prisma.JwtActivityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JwtActivityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JwtActivityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          findFirst: {
+            args: Prisma.JwtActivityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JwtActivityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          findMany: {
+            args: Prisma.JwtActivityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>[]
+          }
+          create: {
+            args: Prisma.JwtActivityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          createMany: {
+            args: Prisma.JwtActivityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JwtActivityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>[]
+          }
+          delete: {
+            args: Prisma.JwtActivityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          update: {
+            args: Prisma.JwtActivityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          deleteMany: {
+            args: Prisma.JwtActivityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JwtActivityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JwtActivityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>[]
+          }
+          upsert: {
+            args: Prisma.JwtActivityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JwtActivityPayload>
+          }
+          aggregate: {
+            args: Prisma.JwtActivityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJwtActivity>
+          }
+          groupBy: {
+            args: Prisma.JwtActivityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JwtActivityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JwtActivityCountArgs<ExtArgs>
+            result: $Utils.Optional<JwtActivityCountAggregateOutputType> | number
           }
         }
       }
@@ -1226,6 +1406,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     device?: DeviceOmit
     user?: UserOmit
+    jwtToken?: JwtTokenOmit
+    jwtActivity?: JwtActivityOmit
     locations?: LocationsOmit
     deviceConfiguration?: DeviceConfigurationOmit
     connection?: ConnectionOmit
@@ -1375,11 +1557,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     connections: number
     devices: number
+    jwtTokens: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     connections?: boolean | UserCountOutputTypeCountConnectionsArgs
     devices?: boolean | UserCountOutputTypeCountDevicesArgs
+    jwtTokens?: boolean | UserCountOutputTypeCountJwtTokensArgs
   }
 
   // Custom InputTypes
@@ -1405,6 +1589,44 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountDevicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DeviceWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountJwtTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JwtTokenWhereInput
+  }
+
+
+  /**
+   * Count Type JwtTokenCountOutputType
+   */
+
+  export type JwtTokenCountOutputType = {
+    activities: number
+  }
+
+  export type JwtTokenCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    activities?: boolean | JwtTokenCountOutputTypeCountActivitiesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * JwtTokenCountOutputType without action
+   */
+  export type JwtTokenCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtTokenCountOutputType
+     */
+    select?: JwtTokenCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * JwtTokenCountOutputType without action
+   */
+  export type JwtTokenCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JwtActivityWhereInput
   }
 
 
@@ -2626,8 +2848,8 @@ export namespace Prisma {
     password_u: string | null
     creation_date: Date | null
     update_date: Date | null
-    jwt_hash: string | null
     jwt_version: number | null
+    last_login: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2638,8 +2860,8 @@ export namespace Prisma {
     password_u: string | null
     creation_date: Date | null
     update_date: Date | null
-    jwt_hash: string | null
     jwt_version: number | null
+    last_login: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2650,8 +2872,8 @@ export namespace Prisma {
     password_u: number
     creation_date: number
     update_date: number
-    jwt_hash: number
     jwt_version: number
+    last_login: number
     _all: number
   }
 
@@ -2672,8 +2894,8 @@ export namespace Prisma {
     password_u?: true
     creation_date?: true
     update_date?: true
-    jwt_hash?: true
     jwt_version?: true
+    last_login?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2684,8 +2906,8 @@ export namespace Prisma {
     password_u?: true
     creation_date?: true
     update_date?: true
-    jwt_hash?: true
     jwt_version?: true
+    last_login?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2696,8 +2918,8 @@ export namespace Prisma {
     password_u?: true
     creation_date?: true
     update_date?: true
-    jwt_hash?: true
     jwt_version?: true
+    last_login?: true
     _all?: true
   }
 
@@ -2795,8 +3017,8 @@ export namespace Prisma {
     password_u: string
     creation_date: Date
     update_date: Date | null
-    jwt_hash: string | null
     jwt_version: number
+    last_login: Date | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -2826,10 +3048,11 @@ export namespace Prisma {
     password_u?: boolean
     creation_date?: boolean
     update_date?: boolean
-    jwt_hash?: boolean
     jwt_version?: boolean
+    last_login?: boolean
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
+    jwtTokens?: boolean | User$jwtTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2841,8 +3064,8 @@ export namespace Prisma {
     password_u?: boolean
     creation_date?: boolean
     update_date?: boolean
-    jwt_hash?: boolean
     jwt_version?: boolean
+    last_login?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2853,8 +3076,8 @@ export namespace Prisma {
     password_u?: boolean
     creation_date?: boolean
     update_date?: boolean
-    jwt_hash?: boolean
     jwt_version?: boolean
+    last_login?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2865,14 +3088,15 @@ export namespace Prisma {
     password_u?: boolean
     creation_date?: boolean
     update_date?: boolean
-    jwt_hash?: boolean
     jwt_version?: boolean
+    last_login?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_hash" | "jwt_version", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_version" | "last_login", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
+    jwtTokens?: boolean | User$jwtTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2883,6 +3107,7 @@ export namespace Prisma {
     objects: {
       connections: Prisma.$ConnectionPayload<ExtArgs>[]
       devices: Prisma.$DevicePayload<ExtArgs>[]
+      jwtTokens: Prisma.$JwtTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2892,8 +3117,8 @@ export namespace Prisma {
       password_u: string
       creation_date: Date
       update_date: Date | null
-      jwt_hash: string | null
       jwt_version: number
+      last_login: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3290,6 +3515,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     connections<T extends User$connectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$connectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     devices<T extends User$devicesArgs<ExtArgs> = {}>(args?: Subset<T, User$devicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    jwtTokens<T extends User$jwtTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$jwtTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3326,8 +3552,8 @@ export namespace Prisma {
     readonly password_u: FieldRef<"User", 'String'>
     readonly creation_date: FieldRef<"User", 'DateTime'>
     readonly update_date: FieldRef<"User", 'DateTime'>
-    readonly jwt_hash: FieldRef<"User", 'String'>
     readonly jwt_version: FieldRef<"User", 'Int'>
+    readonly last_login: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -3764,6 +3990,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.jwtTokens
+   */
+  export type User$jwtTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    where?: JwtTokenWhereInput
+    orderBy?: JwtTokenOrderByWithRelationInput | JwtTokenOrderByWithRelationInput[]
+    cursor?: JwtTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JwtTokenScalarFieldEnum | JwtTokenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3779,6 +4029,2276 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JwtToken
+   */
+
+  export type AggregateJwtToken = {
+    _count: JwtTokenCountAggregateOutputType | null
+    _avg: JwtTokenAvgAggregateOutputType | null
+    _sum: JwtTokenSumAggregateOutputType | null
+    _min: JwtTokenMinAggregateOutputType | null
+    _max: JwtTokenMaxAggregateOutputType | null
+  }
+
+  export type JwtTokenAvgAggregateOutputType = {
+    useCount: number | null
+    maxUses: number | null
+  }
+
+  export type JwtTokenSumAggregateOutputType = {
+    useCount: number | null
+    maxUses: number | null
+  }
+
+  export type JwtTokenMinAggregateOutputType = {
+    id: string | null
+    tokenHash: string | null
+    userId: string | null
+    tokenType: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+    lastUsedAt: Date | null
+    useCount: number | null
+    maxUses: number | null
+    isRevoked: boolean | null
+  }
+
+  export type JwtTokenMaxAggregateOutputType = {
+    id: string | null
+    tokenHash: string | null
+    userId: string | null
+    tokenType: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+    lastUsedAt: Date | null
+    useCount: number | null
+    maxUses: number | null
+    isRevoked: boolean | null
+  }
+
+  export type JwtTokenCountAggregateOutputType = {
+    id: number
+    tokenHash: number
+    userId: number
+    tokenType: number
+    createdAt: number
+    expiresAt: number
+    lastUsedAt: number
+    useCount: number
+    maxUses: number
+    isRevoked: number
+    _all: number
+  }
+
+
+  export type JwtTokenAvgAggregateInputType = {
+    useCount?: true
+    maxUses?: true
+  }
+
+  export type JwtTokenSumAggregateInputType = {
+    useCount?: true
+    maxUses?: true
+  }
+
+  export type JwtTokenMinAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    tokenType?: true
+    createdAt?: true
+    expiresAt?: true
+    lastUsedAt?: true
+    useCount?: true
+    maxUses?: true
+    isRevoked?: true
+  }
+
+  export type JwtTokenMaxAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    tokenType?: true
+    createdAt?: true
+    expiresAt?: true
+    lastUsedAt?: true
+    useCount?: true
+    maxUses?: true
+    isRevoked?: true
+  }
+
+  export type JwtTokenCountAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    tokenType?: true
+    createdAt?: true
+    expiresAt?: true
+    lastUsedAt?: true
+    useCount?: true
+    maxUses?: true
+    isRevoked?: true
+    _all?: true
+  }
+
+  export type JwtTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JwtToken to aggregate.
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtTokens to fetch.
+     */
+    orderBy?: JwtTokenOrderByWithRelationInput | JwtTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JwtTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JwtTokens
+    **/
+    _count?: true | JwtTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JwtTokenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JwtTokenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JwtTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JwtTokenMaxAggregateInputType
+  }
+
+  export type GetJwtTokenAggregateType<T extends JwtTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateJwtToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJwtToken[P]>
+      : GetScalarType<T[P], AggregateJwtToken[P]>
+  }
+
+
+
+
+  export type JwtTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JwtTokenWhereInput
+    orderBy?: JwtTokenOrderByWithAggregationInput | JwtTokenOrderByWithAggregationInput[]
+    by: JwtTokenScalarFieldEnum[] | JwtTokenScalarFieldEnum
+    having?: JwtTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JwtTokenCountAggregateInputType | true
+    _avg?: JwtTokenAvgAggregateInputType
+    _sum?: JwtTokenSumAggregateInputType
+    _min?: JwtTokenMinAggregateInputType
+    _max?: JwtTokenMaxAggregateInputType
+  }
+
+  export type JwtTokenGroupByOutputType = {
+    id: string
+    tokenHash: string
+    userId: string
+    tokenType: string
+    createdAt: Date
+    expiresAt: Date
+    lastUsedAt: Date | null
+    useCount: number
+    maxUses: number
+    isRevoked: boolean
+    _count: JwtTokenCountAggregateOutputType | null
+    _avg: JwtTokenAvgAggregateOutputType | null
+    _sum: JwtTokenSumAggregateOutputType | null
+    _min: JwtTokenMinAggregateOutputType | null
+    _max: JwtTokenMaxAggregateOutputType | null
+  }
+
+  type GetJwtTokenGroupByPayload<T extends JwtTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JwtTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JwtTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JwtTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], JwtTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JwtTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    tokenType?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    lastUsedAt?: boolean
+    useCount?: boolean
+    maxUses?: boolean
+    isRevoked?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    activities?: boolean | JwtToken$activitiesArgs<ExtArgs>
+    _count?: boolean | JwtTokenCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtToken"]>
+
+  export type JwtTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    tokenType?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    lastUsedAt?: boolean
+    useCount?: boolean
+    maxUses?: boolean
+    isRevoked?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtToken"]>
+
+  export type JwtTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    tokenType?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    lastUsedAt?: boolean
+    useCount?: boolean
+    maxUses?: boolean
+    isRevoked?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtToken"]>
+
+  export type JwtTokenSelectScalar = {
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    tokenType?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    lastUsedAt?: boolean
+    useCount?: boolean
+    maxUses?: boolean
+    isRevoked?: boolean
+  }
+
+  export type JwtTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tokenHash" | "userId" | "tokenType" | "createdAt" | "expiresAt" | "lastUsedAt" | "useCount" | "maxUses" | "isRevoked", ExtArgs["result"]["jwtToken"]>
+  export type JwtTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    activities?: boolean | JwtToken$activitiesArgs<ExtArgs>
+    _count?: boolean | JwtTokenCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type JwtTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type JwtTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $JwtTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JwtToken"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      activities: Prisma.$JwtActivityPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tokenHash: string
+      userId: string
+      tokenType: string
+      createdAt: Date
+      expiresAt: Date
+      lastUsedAt: Date | null
+      useCount: number
+      maxUses: number
+      isRevoked: boolean
+    }, ExtArgs["result"]["jwtToken"]>
+    composites: {}
+  }
+
+  type JwtTokenGetPayload<S extends boolean | null | undefined | JwtTokenDefaultArgs> = $Result.GetResult<Prisma.$JwtTokenPayload, S>
+
+  type JwtTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JwtTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JwtTokenCountAggregateInputType | true
+    }
+
+  export interface JwtTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JwtToken'], meta: { name: 'JwtToken' } }
+    /**
+     * Find zero or one JwtToken that matches the filter.
+     * @param {JwtTokenFindUniqueArgs} args - Arguments to find a JwtToken
+     * @example
+     * // Get one JwtToken
+     * const jwtToken = await prisma.jwtToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JwtTokenFindUniqueArgs>(args: SelectSubset<T, JwtTokenFindUniqueArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JwtToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JwtTokenFindUniqueOrThrowArgs} args - Arguments to find a JwtToken
+     * @example
+     * // Get one JwtToken
+     * const jwtToken = await prisma.jwtToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JwtTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, JwtTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JwtToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenFindFirstArgs} args - Arguments to find a JwtToken
+     * @example
+     * // Get one JwtToken
+     * const jwtToken = await prisma.jwtToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JwtTokenFindFirstArgs>(args?: SelectSubset<T, JwtTokenFindFirstArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JwtToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenFindFirstOrThrowArgs} args - Arguments to find a JwtToken
+     * @example
+     * // Get one JwtToken
+     * const jwtToken = await prisma.jwtToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JwtTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, JwtTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JwtTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JwtTokens
+     * const jwtTokens = await prisma.jwtToken.findMany()
+     * 
+     * // Get first 10 JwtTokens
+     * const jwtTokens = await prisma.jwtToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jwtTokenWithIdOnly = await prisma.jwtToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JwtTokenFindManyArgs>(args?: SelectSubset<T, JwtTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JwtToken.
+     * @param {JwtTokenCreateArgs} args - Arguments to create a JwtToken.
+     * @example
+     * // Create one JwtToken
+     * const JwtToken = await prisma.jwtToken.create({
+     *   data: {
+     *     // ... data to create a JwtToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends JwtTokenCreateArgs>(args: SelectSubset<T, JwtTokenCreateArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JwtTokens.
+     * @param {JwtTokenCreateManyArgs} args - Arguments to create many JwtTokens.
+     * @example
+     * // Create many JwtTokens
+     * const jwtToken = await prisma.jwtToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JwtTokenCreateManyArgs>(args?: SelectSubset<T, JwtTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JwtTokens and returns the data saved in the database.
+     * @param {JwtTokenCreateManyAndReturnArgs} args - Arguments to create many JwtTokens.
+     * @example
+     * // Create many JwtTokens
+     * const jwtToken = await prisma.jwtToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JwtTokens and only return the `id`
+     * const jwtTokenWithIdOnly = await prisma.jwtToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JwtTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, JwtTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JwtToken.
+     * @param {JwtTokenDeleteArgs} args - Arguments to delete one JwtToken.
+     * @example
+     * // Delete one JwtToken
+     * const JwtToken = await prisma.jwtToken.delete({
+     *   where: {
+     *     // ... filter to delete one JwtToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JwtTokenDeleteArgs>(args: SelectSubset<T, JwtTokenDeleteArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JwtToken.
+     * @param {JwtTokenUpdateArgs} args - Arguments to update one JwtToken.
+     * @example
+     * // Update one JwtToken
+     * const jwtToken = await prisma.jwtToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JwtTokenUpdateArgs>(args: SelectSubset<T, JwtTokenUpdateArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JwtTokens.
+     * @param {JwtTokenDeleteManyArgs} args - Arguments to filter JwtTokens to delete.
+     * @example
+     * // Delete a few JwtTokens
+     * const { count } = await prisma.jwtToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JwtTokenDeleteManyArgs>(args?: SelectSubset<T, JwtTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JwtTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JwtTokens
+     * const jwtToken = await prisma.jwtToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JwtTokenUpdateManyArgs>(args: SelectSubset<T, JwtTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JwtTokens and returns the data updated in the database.
+     * @param {JwtTokenUpdateManyAndReturnArgs} args - Arguments to update many JwtTokens.
+     * @example
+     * // Update many JwtTokens
+     * const jwtToken = await prisma.jwtToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JwtTokens and only return the `id`
+     * const jwtTokenWithIdOnly = await prisma.jwtToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JwtTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, JwtTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JwtToken.
+     * @param {JwtTokenUpsertArgs} args - Arguments to update or create a JwtToken.
+     * @example
+     * // Update or create a JwtToken
+     * const jwtToken = await prisma.jwtToken.upsert({
+     *   create: {
+     *     // ... data to create a JwtToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JwtToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JwtTokenUpsertArgs>(args: SelectSubset<T, JwtTokenUpsertArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JwtTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenCountArgs} args - Arguments to filter JwtTokens to count.
+     * @example
+     * // Count the number of JwtTokens
+     * const count = await prisma.jwtToken.count({
+     *   where: {
+     *     // ... the filter for the JwtTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends JwtTokenCountArgs>(
+      args?: Subset<T, JwtTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JwtTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JwtToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JwtTokenAggregateArgs>(args: Subset<T, JwtTokenAggregateArgs>): Prisma.PrismaPromise<GetJwtTokenAggregateType<T>>
+
+    /**
+     * Group by JwtToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JwtTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JwtTokenGroupByArgs['orderBy'] }
+        : { orderBy?: JwtTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JwtTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJwtTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JwtToken model
+   */
+  readonly fields: JwtTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JwtToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JwtTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    activities<T extends JwtToken$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, JwtToken$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JwtToken model
+   */
+  interface JwtTokenFieldRefs {
+    readonly id: FieldRef<"JwtToken", 'String'>
+    readonly tokenHash: FieldRef<"JwtToken", 'String'>
+    readonly userId: FieldRef<"JwtToken", 'String'>
+    readonly tokenType: FieldRef<"JwtToken", 'String'>
+    readonly createdAt: FieldRef<"JwtToken", 'DateTime'>
+    readonly expiresAt: FieldRef<"JwtToken", 'DateTime'>
+    readonly lastUsedAt: FieldRef<"JwtToken", 'DateTime'>
+    readonly useCount: FieldRef<"JwtToken", 'Int'>
+    readonly maxUses: FieldRef<"JwtToken", 'Int'>
+    readonly isRevoked: FieldRef<"JwtToken", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JwtToken findUnique
+   */
+  export type JwtTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtToken to fetch.
+     */
+    where: JwtTokenWhereUniqueInput
+  }
+
+  /**
+   * JwtToken findUniqueOrThrow
+   */
+  export type JwtTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtToken to fetch.
+     */
+    where: JwtTokenWhereUniqueInput
+  }
+
+  /**
+   * JwtToken findFirst
+   */
+  export type JwtTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtToken to fetch.
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtTokens to fetch.
+     */
+    orderBy?: JwtTokenOrderByWithRelationInput | JwtTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JwtTokens.
+     */
+    cursor?: JwtTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JwtTokens.
+     */
+    distinct?: JwtTokenScalarFieldEnum | JwtTokenScalarFieldEnum[]
+  }
+
+  /**
+   * JwtToken findFirstOrThrow
+   */
+  export type JwtTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtToken to fetch.
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtTokens to fetch.
+     */
+    orderBy?: JwtTokenOrderByWithRelationInput | JwtTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JwtTokens.
+     */
+    cursor?: JwtTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JwtTokens.
+     */
+    distinct?: JwtTokenScalarFieldEnum | JwtTokenScalarFieldEnum[]
+  }
+
+  /**
+   * JwtToken findMany
+   */
+  export type JwtTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtTokens to fetch.
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtTokens to fetch.
+     */
+    orderBy?: JwtTokenOrderByWithRelationInput | JwtTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JwtTokens.
+     */
+    cursor?: JwtTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtTokens.
+     */
+    skip?: number
+    distinct?: JwtTokenScalarFieldEnum | JwtTokenScalarFieldEnum[]
+  }
+
+  /**
+   * JwtToken create
+   */
+  export type JwtTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a JwtToken.
+     */
+    data: XOR<JwtTokenCreateInput, JwtTokenUncheckedCreateInput>
+  }
+
+  /**
+   * JwtToken createMany
+   */
+  export type JwtTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JwtTokens.
+     */
+    data: JwtTokenCreateManyInput | JwtTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JwtToken createManyAndReturn
+   */
+  export type JwtTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many JwtTokens.
+     */
+    data: JwtTokenCreateManyInput | JwtTokenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JwtToken update
+   */
+  export type JwtTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a JwtToken.
+     */
+    data: XOR<JwtTokenUpdateInput, JwtTokenUncheckedUpdateInput>
+    /**
+     * Choose, which JwtToken to update.
+     */
+    where: JwtTokenWhereUniqueInput
+  }
+
+  /**
+   * JwtToken updateMany
+   */
+  export type JwtTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JwtTokens.
+     */
+    data: XOR<JwtTokenUpdateManyMutationInput, JwtTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which JwtTokens to update
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * Limit how many JwtTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JwtToken updateManyAndReturn
+   */
+  export type JwtTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update JwtTokens.
+     */
+    data: XOR<JwtTokenUpdateManyMutationInput, JwtTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which JwtTokens to update
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * Limit how many JwtTokens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JwtToken upsert
+   */
+  export type JwtTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the JwtToken to update in case it exists.
+     */
+    where: JwtTokenWhereUniqueInput
+    /**
+     * In case the JwtToken found by the `where` argument doesn't exist, create a new JwtToken with this data.
+     */
+    create: XOR<JwtTokenCreateInput, JwtTokenUncheckedCreateInput>
+    /**
+     * In case the JwtToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JwtTokenUpdateInput, JwtTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * JwtToken delete
+   */
+  export type JwtTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+    /**
+     * Filter which JwtToken to delete.
+     */
+    where: JwtTokenWhereUniqueInput
+  }
+
+  /**
+   * JwtToken deleteMany
+   */
+  export type JwtTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JwtTokens to delete
+     */
+    where?: JwtTokenWhereInput
+    /**
+     * Limit how many JwtTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JwtToken.activities
+   */
+  export type JwtToken$activitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    where?: JwtActivityWhereInput
+    orderBy?: JwtActivityOrderByWithRelationInput | JwtActivityOrderByWithRelationInput[]
+    cursor?: JwtActivityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JwtActivityScalarFieldEnum | JwtActivityScalarFieldEnum[]
+  }
+
+  /**
+   * JwtToken without action
+   */
+  export type JwtTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtToken
+     */
+    select?: JwtTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtToken
+     */
+    omit?: JwtTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtTokenInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JwtActivity
+   */
+
+  export type AggregateJwtActivity = {
+    _count: JwtActivityCountAggregateOutputType | null
+    _avg: JwtActivityAvgAggregateOutputType | null
+    _sum: JwtActivitySumAggregateOutputType | null
+    _min: JwtActivityMinAggregateOutputType | null
+    _max: JwtActivityMaxAggregateOutputType | null
+  }
+
+  export type JwtActivityAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JwtActivitySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JwtActivityMinAggregateOutputType = {
+    id: number | null
+    tokenId: string | null
+    action: string | null
+    performedAt: Date | null
+  }
+
+  export type JwtActivityMaxAggregateOutputType = {
+    id: number | null
+    tokenId: string | null
+    action: string | null
+    performedAt: Date | null
+  }
+
+  export type JwtActivityCountAggregateOutputType = {
+    id: number
+    tokenId: number
+    action: number
+    performedAt: number
+    _all: number
+  }
+
+
+  export type JwtActivityAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type JwtActivitySumAggregateInputType = {
+    id?: true
+  }
+
+  export type JwtActivityMinAggregateInputType = {
+    id?: true
+    tokenId?: true
+    action?: true
+    performedAt?: true
+  }
+
+  export type JwtActivityMaxAggregateInputType = {
+    id?: true
+    tokenId?: true
+    action?: true
+    performedAt?: true
+  }
+
+  export type JwtActivityCountAggregateInputType = {
+    id?: true
+    tokenId?: true
+    action?: true
+    performedAt?: true
+    _all?: true
+  }
+
+  export type JwtActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JwtActivity to aggregate.
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtActivities to fetch.
+     */
+    orderBy?: JwtActivityOrderByWithRelationInput | JwtActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JwtActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JwtActivities
+    **/
+    _count?: true | JwtActivityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JwtActivityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JwtActivitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JwtActivityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JwtActivityMaxAggregateInputType
+  }
+
+  export type GetJwtActivityAggregateType<T extends JwtActivityAggregateArgs> = {
+        [P in keyof T & keyof AggregateJwtActivity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJwtActivity[P]>
+      : GetScalarType<T[P], AggregateJwtActivity[P]>
+  }
+
+
+
+
+  export type JwtActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JwtActivityWhereInput
+    orderBy?: JwtActivityOrderByWithAggregationInput | JwtActivityOrderByWithAggregationInput[]
+    by: JwtActivityScalarFieldEnum[] | JwtActivityScalarFieldEnum
+    having?: JwtActivityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JwtActivityCountAggregateInputType | true
+    _avg?: JwtActivityAvgAggregateInputType
+    _sum?: JwtActivitySumAggregateInputType
+    _min?: JwtActivityMinAggregateInputType
+    _max?: JwtActivityMaxAggregateInputType
+  }
+
+  export type JwtActivityGroupByOutputType = {
+    id: number
+    tokenId: string
+    action: string
+    performedAt: Date
+    _count: JwtActivityCountAggregateOutputType | null
+    _avg: JwtActivityAvgAggregateOutputType | null
+    _sum: JwtActivitySumAggregateOutputType | null
+    _min: JwtActivityMinAggregateOutputType | null
+    _max: JwtActivityMaxAggregateOutputType | null
+  }
+
+  type GetJwtActivityGroupByPayload<T extends JwtActivityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JwtActivityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JwtActivityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JwtActivityGroupByOutputType[P]>
+            : GetScalarType<T[P], JwtActivityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JwtActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenId?: boolean
+    action?: boolean
+    performedAt?: boolean
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtActivity"]>
+
+  export type JwtActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenId?: boolean
+    action?: boolean
+    performedAt?: boolean
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtActivity"]>
+
+  export type JwtActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenId?: boolean
+    action?: boolean
+    performedAt?: boolean
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jwtActivity"]>
+
+  export type JwtActivitySelectScalar = {
+    id?: boolean
+    tokenId?: boolean
+    action?: boolean
+    performedAt?: boolean
+  }
+
+  export type JwtActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tokenId" | "action" | "performedAt", ExtArgs["result"]["jwtActivity"]>
+  export type JwtActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }
+  export type JwtActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }
+  export type JwtActivityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    jwtToken?: boolean | JwtTokenDefaultArgs<ExtArgs>
+  }
+
+  export type $JwtActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JwtActivity"
+    objects: {
+      jwtToken: Prisma.$JwtTokenPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tokenId: string
+      action: string
+      performedAt: Date
+    }, ExtArgs["result"]["jwtActivity"]>
+    composites: {}
+  }
+
+  type JwtActivityGetPayload<S extends boolean | null | undefined | JwtActivityDefaultArgs> = $Result.GetResult<Prisma.$JwtActivityPayload, S>
+
+  type JwtActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JwtActivityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JwtActivityCountAggregateInputType | true
+    }
+
+  export interface JwtActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JwtActivity'], meta: { name: 'JwtActivity' } }
+    /**
+     * Find zero or one JwtActivity that matches the filter.
+     * @param {JwtActivityFindUniqueArgs} args - Arguments to find a JwtActivity
+     * @example
+     * // Get one JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JwtActivityFindUniqueArgs>(args: SelectSubset<T, JwtActivityFindUniqueArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JwtActivity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JwtActivityFindUniqueOrThrowArgs} args - Arguments to find a JwtActivity
+     * @example
+     * // Get one JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JwtActivityFindUniqueOrThrowArgs>(args: SelectSubset<T, JwtActivityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JwtActivity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityFindFirstArgs} args - Arguments to find a JwtActivity
+     * @example
+     * // Get one JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JwtActivityFindFirstArgs>(args?: SelectSubset<T, JwtActivityFindFirstArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JwtActivity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityFindFirstOrThrowArgs} args - Arguments to find a JwtActivity
+     * @example
+     * // Get one JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JwtActivityFindFirstOrThrowArgs>(args?: SelectSubset<T, JwtActivityFindFirstOrThrowArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JwtActivities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JwtActivities
+     * const jwtActivities = await prisma.jwtActivity.findMany()
+     * 
+     * // Get first 10 JwtActivities
+     * const jwtActivities = await prisma.jwtActivity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jwtActivityWithIdOnly = await prisma.jwtActivity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JwtActivityFindManyArgs>(args?: SelectSubset<T, JwtActivityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JwtActivity.
+     * @param {JwtActivityCreateArgs} args - Arguments to create a JwtActivity.
+     * @example
+     * // Create one JwtActivity
+     * const JwtActivity = await prisma.jwtActivity.create({
+     *   data: {
+     *     // ... data to create a JwtActivity
+     *   }
+     * })
+     * 
+     */
+    create<T extends JwtActivityCreateArgs>(args: SelectSubset<T, JwtActivityCreateArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JwtActivities.
+     * @param {JwtActivityCreateManyArgs} args - Arguments to create many JwtActivities.
+     * @example
+     * // Create many JwtActivities
+     * const jwtActivity = await prisma.jwtActivity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JwtActivityCreateManyArgs>(args?: SelectSubset<T, JwtActivityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JwtActivities and returns the data saved in the database.
+     * @param {JwtActivityCreateManyAndReturnArgs} args - Arguments to create many JwtActivities.
+     * @example
+     * // Create many JwtActivities
+     * const jwtActivity = await prisma.jwtActivity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JwtActivities and only return the `id`
+     * const jwtActivityWithIdOnly = await prisma.jwtActivity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JwtActivityCreateManyAndReturnArgs>(args?: SelectSubset<T, JwtActivityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JwtActivity.
+     * @param {JwtActivityDeleteArgs} args - Arguments to delete one JwtActivity.
+     * @example
+     * // Delete one JwtActivity
+     * const JwtActivity = await prisma.jwtActivity.delete({
+     *   where: {
+     *     // ... filter to delete one JwtActivity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JwtActivityDeleteArgs>(args: SelectSubset<T, JwtActivityDeleteArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JwtActivity.
+     * @param {JwtActivityUpdateArgs} args - Arguments to update one JwtActivity.
+     * @example
+     * // Update one JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JwtActivityUpdateArgs>(args: SelectSubset<T, JwtActivityUpdateArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JwtActivities.
+     * @param {JwtActivityDeleteManyArgs} args - Arguments to filter JwtActivities to delete.
+     * @example
+     * // Delete a few JwtActivities
+     * const { count } = await prisma.jwtActivity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JwtActivityDeleteManyArgs>(args?: SelectSubset<T, JwtActivityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JwtActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JwtActivities
+     * const jwtActivity = await prisma.jwtActivity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JwtActivityUpdateManyArgs>(args: SelectSubset<T, JwtActivityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JwtActivities and returns the data updated in the database.
+     * @param {JwtActivityUpdateManyAndReturnArgs} args - Arguments to update many JwtActivities.
+     * @example
+     * // Update many JwtActivities
+     * const jwtActivity = await prisma.jwtActivity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JwtActivities and only return the `id`
+     * const jwtActivityWithIdOnly = await prisma.jwtActivity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JwtActivityUpdateManyAndReturnArgs>(args: SelectSubset<T, JwtActivityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JwtActivity.
+     * @param {JwtActivityUpsertArgs} args - Arguments to update or create a JwtActivity.
+     * @example
+     * // Update or create a JwtActivity
+     * const jwtActivity = await prisma.jwtActivity.upsert({
+     *   create: {
+     *     // ... data to create a JwtActivity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JwtActivity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JwtActivityUpsertArgs>(args: SelectSubset<T, JwtActivityUpsertArgs<ExtArgs>>): Prisma__JwtActivityClient<$Result.GetResult<Prisma.$JwtActivityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JwtActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityCountArgs} args - Arguments to filter JwtActivities to count.
+     * @example
+     * // Count the number of JwtActivities
+     * const count = await prisma.jwtActivity.count({
+     *   where: {
+     *     // ... the filter for the JwtActivities we want to count
+     *   }
+     * })
+    **/
+    count<T extends JwtActivityCountArgs>(
+      args?: Subset<T, JwtActivityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JwtActivityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JwtActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JwtActivityAggregateArgs>(args: Subset<T, JwtActivityAggregateArgs>): Prisma.PrismaPromise<GetJwtActivityAggregateType<T>>
+
+    /**
+     * Group by JwtActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JwtActivityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JwtActivityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JwtActivityGroupByArgs['orderBy'] }
+        : { orderBy?: JwtActivityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JwtActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJwtActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JwtActivity model
+   */
+  readonly fields: JwtActivityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JwtActivity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JwtActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    jwtToken<T extends JwtTokenDefaultArgs<ExtArgs> = {}>(args?: Subset<T, JwtTokenDefaultArgs<ExtArgs>>): Prisma__JwtTokenClient<$Result.GetResult<Prisma.$JwtTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JwtActivity model
+   */
+  interface JwtActivityFieldRefs {
+    readonly id: FieldRef<"JwtActivity", 'Int'>
+    readonly tokenId: FieldRef<"JwtActivity", 'String'>
+    readonly action: FieldRef<"JwtActivity", 'String'>
+    readonly performedAt: FieldRef<"JwtActivity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JwtActivity findUnique
+   */
+  export type JwtActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtActivity to fetch.
+     */
+    where: JwtActivityWhereUniqueInput
+  }
+
+  /**
+   * JwtActivity findUniqueOrThrow
+   */
+  export type JwtActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtActivity to fetch.
+     */
+    where: JwtActivityWhereUniqueInput
+  }
+
+  /**
+   * JwtActivity findFirst
+   */
+  export type JwtActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtActivity to fetch.
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtActivities to fetch.
+     */
+    orderBy?: JwtActivityOrderByWithRelationInput | JwtActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JwtActivities.
+     */
+    cursor?: JwtActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JwtActivities.
+     */
+    distinct?: JwtActivityScalarFieldEnum | JwtActivityScalarFieldEnum[]
+  }
+
+  /**
+   * JwtActivity findFirstOrThrow
+   */
+  export type JwtActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtActivity to fetch.
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtActivities to fetch.
+     */
+    orderBy?: JwtActivityOrderByWithRelationInput | JwtActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JwtActivities.
+     */
+    cursor?: JwtActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JwtActivities.
+     */
+    distinct?: JwtActivityScalarFieldEnum | JwtActivityScalarFieldEnum[]
+  }
+
+  /**
+   * JwtActivity findMany
+   */
+  export type JwtActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which JwtActivities to fetch.
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JwtActivities to fetch.
+     */
+    orderBy?: JwtActivityOrderByWithRelationInput | JwtActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JwtActivities.
+     */
+    cursor?: JwtActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JwtActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JwtActivities.
+     */
+    skip?: number
+    distinct?: JwtActivityScalarFieldEnum | JwtActivityScalarFieldEnum[]
+  }
+
+  /**
+   * JwtActivity create
+   */
+  export type JwtActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a JwtActivity.
+     */
+    data: XOR<JwtActivityCreateInput, JwtActivityUncheckedCreateInput>
+  }
+
+  /**
+   * JwtActivity createMany
+   */
+  export type JwtActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JwtActivities.
+     */
+    data: JwtActivityCreateManyInput | JwtActivityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JwtActivity createManyAndReturn
+   */
+  export type JwtActivityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * The data used to create many JwtActivities.
+     */
+    data: JwtActivityCreateManyInput | JwtActivityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JwtActivity update
+   */
+  export type JwtActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a JwtActivity.
+     */
+    data: XOR<JwtActivityUpdateInput, JwtActivityUncheckedUpdateInput>
+    /**
+     * Choose, which JwtActivity to update.
+     */
+    where: JwtActivityWhereUniqueInput
+  }
+
+  /**
+   * JwtActivity updateMany
+   */
+  export type JwtActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JwtActivities.
+     */
+    data: XOR<JwtActivityUpdateManyMutationInput, JwtActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which JwtActivities to update
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * Limit how many JwtActivities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JwtActivity updateManyAndReturn
+   */
+  export type JwtActivityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * The data used to update JwtActivities.
+     */
+    data: XOR<JwtActivityUpdateManyMutationInput, JwtActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which JwtActivities to update
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * Limit how many JwtActivities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * JwtActivity upsert
+   */
+  export type JwtActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the JwtActivity to update in case it exists.
+     */
+    where: JwtActivityWhereUniqueInput
+    /**
+     * In case the JwtActivity found by the `where` argument doesn't exist, create a new JwtActivity with this data.
+     */
+    create: XOR<JwtActivityCreateInput, JwtActivityUncheckedCreateInput>
+    /**
+     * In case the JwtActivity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JwtActivityUpdateInput, JwtActivityUncheckedUpdateInput>
+  }
+
+  /**
+   * JwtActivity delete
+   */
+  export type JwtActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
+    /**
+     * Filter which JwtActivity to delete.
+     */
+    where: JwtActivityWhereUniqueInput
+  }
+
+  /**
+   * JwtActivity deleteMany
+   */
+  export type JwtActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JwtActivities to delete
+     */
+    where?: JwtActivityWhereInput
+    /**
+     * Limit how many JwtActivities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JwtActivity without action
+   */
+  export type JwtActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JwtActivity
+     */
+    select?: JwtActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JwtActivity
+     */
+    omit?: JwtActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JwtActivityInclude<ExtArgs> | null
   }
 
 
@@ -8211,11 +10731,37 @@ export namespace Prisma {
     password_u: 'password_u',
     creation_date: 'creation_date',
     update_date: 'update_date',
-    jwt_hash: 'jwt_hash',
-    jwt_version: 'jwt_version'
+    jwt_version: 'jwt_version',
+    last_login: 'last_login'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const JwtTokenScalarFieldEnum: {
+    id: 'id',
+    tokenHash: 'tokenHash',
+    userId: 'userId',
+    tokenType: 'tokenType',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt',
+    lastUsedAt: 'lastUsedAt',
+    useCount: 'useCount',
+    maxUses: 'maxUses',
+    isRevoked: 'isRevoked'
+  };
+
+  export type JwtTokenScalarFieldEnum = (typeof JwtTokenScalarFieldEnum)[keyof typeof JwtTokenScalarFieldEnum]
+
+
+  export const JwtActivityScalarFieldEnum: {
+    id: 'id',
+    tokenId: 'tokenId',
+    action: 'action',
+    performedAt: 'performedAt'
+  };
+
+  export type JwtActivityScalarFieldEnum = (typeof JwtActivityScalarFieldEnum)[keyof typeof JwtActivityScalarFieldEnum]
 
 
   export const LocationsScalarFieldEnum: {
@@ -8334,6 +10880,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -8428,10 +10981,11 @@ export namespace Prisma {
     password_u?: StringFilter<"User"> | string
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
-    jwt_hash?: StringNullableFilter<"User"> | string | null
     jwt_version?: IntFilter<"User"> | number
+    last_login?: DateTimeNullableFilter<"User"> | Date | string | null
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
+    jwtTokens?: JwtTokenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8442,10 +10996,11 @@ export namespace Prisma {
     password_u?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
-    jwt_hash?: SortOrderInput | SortOrder
     jwt_version?: SortOrder
+    last_login?: SortOrderInput | SortOrder
     connections?: ConnectionOrderByRelationAggregateInput
     devices?: DeviceOrderByRelationAggregateInput
+    jwtTokens?: JwtTokenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8459,10 +11014,11 @@ export namespace Prisma {
     password_u?: StringFilter<"User"> | string
     creation_date?: DateTimeFilter<"User"> | Date | string
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
-    jwt_hash?: StringNullableFilter<"User"> | string | null
     jwt_version?: IntFilter<"User"> | number
+    last_login?: DateTimeNullableFilter<"User"> | Date | string | null
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
+    jwtTokens?: JwtTokenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -8473,8 +11029,8 @@ export namespace Prisma {
     password_u?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrderInput | SortOrder
-    jwt_hash?: SortOrderInput | SortOrder
     jwt_version?: SortOrder
+    last_login?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -8493,8 +11049,145 @@ export namespace Prisma {
     password_u?: StringWithAggregatesFilter<"User"> | string
     creation_date?: DateTimeWithAggregatesFilter<"User"> | Date | string
     update_date?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-    jwt_hash?: StringNullableWithAggregatesFilter<"User"> | string | null
     jwt_version?: IntWithAggregatesFilter<"User"> | number
+    last_login?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  }
+
+  export type JwtTokenWhereInput = {
+    AND?: JwtTokenWhereInput | JwtTokenWhereInput[]
+    OR?: JwtTokenWhereInput[]
+    NOT?: JwtTokenWhereInput | JwtTokenWhereInput[]
+    id?: StringFilter<"JwtToken"> | string
+    tokenHash?: StringFilter<"JwtToken"> | string
+    userId?: StringFilter<"JwtToken"> | string
+    tokenType?: StringFilter<"JwtToken"> | string
+    createdAt?: DateTimeFilter<"JwtToken"> | Date | string
+    expiresAt?: DateTimeFilter<"JwtToken"> | Date | string
+    lastUsedAt?: DateTimeNullableFilter<"JwtToken"> | Date | string | null
+    useCount?: IntFilter<"JwtToken"> | number
+    maxUses?: IntFilter<"JwtToken"> | number
+    isRevoked?: BoolFilter<"JwtToken"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    activities?: JwtActivityListRelationFilter
+  }
+
+  export type JwtTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    tokenType?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    lastUsedAt?: SortOrderInput | SortOrder
+    useCount?: SortOrder
+    maxUses?: SortOrder
+    isRevoked?: SortOrder
+    user?: UserOrderByWithRelationInput
+    activities?: JwtActivityOrderByRelationAggregateInput
+  }
+
+  export type JwtTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tokenHash?: string
+    AND?: JwtTokenWhereInput | JwtTokenWhereInput[]
+    OR?: JwtTokenWhereInput[]
+    NOT?: JwtTokenWhereInput | JwtTokenWhereInput[]
+    userId?: StringFilter<"JwtToken"> | string
+    tokenType?: StringFilter<"JwtToken"> | string
+    createdAt?: DateTimeFilter<"JwtToken"> | Date | string
+    expiresAt?: DateTimeFilter<"JwtToken"> | Date | string
+    lastUsedAt?: DateTimeNullableFilter<"JwtToken"> | Date | string | null
+    useCount?: IntFilter<"JwtToken"> | number
+    maxUses?: IntFilter<"JwtToken"> | number
+    isRevoked?: BoolFilter<"JwtToken"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    activities?: JwtActivityListRelationFilter
+  }, "id" | "tokenHash">
+
+  export type JwtTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    tokenType?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    lastUsedAt?: SortOrderInput | SortOrder
+    useCount?: SortOrder
+    maxUses?: SortOrder
+    isRevoked?: SortOrder
+    _count?: JwtTokenCountOrderByAggregateInput
+    _avg?: JwtTokenAvgOrderByAggregateInput
+    _max?: JwtTokenMaxOrderByAggregateInput
+    _min?: JwtTokenMinOrderByAggregateInput
+    _sum?: JwtTokenSumOrderByAggregateInput
+  }
+
+  export type JwtTokenScalarWhereWithAggregatesInput = {
+    AND?: JwtTokenScalarWhereWithAggregatesInput | JwtTokenScalarWhereWithAggregatesInput[]
+    OR?: JwtTokenScalarWhereWithAggregatesInput[]
+    NOT?: JwtTokenScalarWhereWithAggregatesInput | JwtTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"JwtToken"> | string
+    tokenHash?: StringWithAggregatesFilter<"JwtToken"> | string
+    userId?: StringWithAggregatesFilter<"JwtToken"> | string
+    tokenType?: StringWithAggregatesFilter<"JwtToken"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"JwtToken"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"JwtToken"> | Date | string
+    lastUsedAt?: DateTimeNullableWithAggregatesFilter<"JwtToken"> | Date | string | null
+    useCount?: IntWithAggregatesFilter<"JwtToken"> | number
+    maxUses?: IntWithAggregatesFilter<"JwtToken"> | number
+    isRevoked?: BoolWithAggregatesFilter<"JwtToken"> | boolean
+  }
+
+  export type JwtActivityWhereInput = {
+    AND?: JwtActivityWhereInput | JwtActivityWhereInput[]
+    OR?: JwtActivityWhereInput[]
+    NOT?: JwtActivityWhereInput | JwtActivityWhereInput[]
+    id?: IntFilter<"JwtActivity"> | number
+    tokenId?: StringFilter<"JwtActivity"> | string
+    action?: StringFilter<"JwtActivity"> | string
+    performedAt?: DateTimeFilter<"JwtActivity"> | Date | string
+    jwtToken?: XOR<JwtTokenScalarRelationFilter, JwtTokenWhereInput>
+  }
+
+  export type JwtActivityOrderByWithRelationInput = {
+    id?: SortOrder
+    tokenId?: SortOrder
+    action?: SortOrder
+    performedAt?: SortOrder
+    jwtToken?: JwtTokenOrderByWithRelationInput
+  }
+
+  export type JwtActivityWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: JwtActivityWhereInput | JwtActivityWhereInput[]
+    OR?: JwtActivityWhereInput[]
+    NOT?: JwtActivityWhereInput | JwtActivityWhereInput[]
+    tokenId?: StringFilter<"JwtActivity"> | string
+    action?: StringFilter<"JwtActivity"> | string
+    performedAt?: DateTimeFilter<"JwtActivity"> | Date | string
+    jwtToken?: XOR<JwtTokenScalarRelationFilter, JwtTokenWhereInput>
+  }, "id">
+
+  export type JwtActivityOrderByWithAggregationInput = {
+    id?: SortOrder
+    tokenId?: SortOrder
+    action?: SortOrder
+    performedAt?: SortOrder
+    _count?: JwtActivityCountOrderByAggregateInput
+    _avg?: JwtActivityAvgOrderByAggregateInput
+    _max?: JwtActivityMaxOrderByAggregateInput
+    _min?: JwtActivityMinOrderByAggregateInput
+    _sum?: JwtActivitySumOrderByAggregateInput
+  }
+
+  export type JwtActivityScalarWhereWithAggregatesInput = {
+    AND?: JwtActivityScalarWhereWithAggregatesInput | JwtActivityScalarWhereWithAggregatesInput[]
+    OR?: JwtActivityScalarWhereWithAggregatesInput[]
+    NOT?: JwtActivityScalarWhereWithAggregatesInput | JwtActivityScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"JwtActivity"> | number
+    tokenId?: StringWithAggregatesFilter<"JwtActivity"> | string
+    action?: StringWithAggregatesFilter<"JwtActivity"> | string
+    performedAt?: DateTimeWithAggregatesFilter<"JwtActivity"> | Date | string
   }
 
   export type LocationsWhereInput = {
@@ -8807,10 +11500,11 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     connections?: ConnectionCreateNestedManyWithoutUserInput
     devices?: DeviceCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8821,10 +11515,11 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8835,10 +11530,11 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     connections?: ConnectionUpdateManyWithoutUserNestedInput
     devices?: DeviceUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8849,10 +11545,11 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8863,8 +11560,8 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8875,8 +11572,8 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8887,8 +11584,147 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type JwtTokenCreateInput = {
+    id?: string
+    tokenHash: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+    user: UserCreateNestedOneWithoutJwtTokensInput
+    activities?: JwtActivityCreateNestedManyWithoutJwtTokenInput
+  }
+
+  export type JwtTokenUncheckedCreateInput = {
+    id?: string
+    tokenHash: string
+    userId: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+    activities?: JwtActivityUncheckedCreateNestedManyWithoutJwtTokenInput
+  }
+
+  export type JwtTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutJwtTokensNestedInput
+    activities?: JwtActivityUpdateManyWithoutJwtTokenNestedInput
+  }
+
+  export type JwtTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    activities?: JwtActivityUncheckedUpdateManyWithoutJwtTokenNestedInput
+  }
+
+  export type JwtTokenCreateManyInput = {
+    id?: string
+    tokenHash: string
+    userId: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+  }
+
+  export type JwtTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JwtTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JwtActivityCreateInput = {
+    action: string
+    performedAt?: Date | string
+    jwtToken: JwtTokenCreateNestedOneWithoutActivitiesInput
+  }
+
+  export type JwtActivityUncheckedCreateInput = {
+    id?: number
+    tokenId: string
+    action: string
+    performedAt?: Date | string
+  }
+
+  export type JwtActivityUpdateInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    jwtToken?: JwtTokenUpdateOneRequiredWithoutActivitiesNestedInput
+  }
+
+  export type JwtActivityUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JwtActivityCreateManyInput = {
+    id?: number
+    tokenId: string
+    action: string
+    performedAt?: Date | string
+  }
+
+  export type JwtActivityUpdateManyMutationInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JwtActivityUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LocationsCreateInput = {
@@ -9286,7 +12122,17 @@ export namespace Prisma {
     none?: DeviceWhereInput
   }
 
+  export type JwtTokenListRelationFilter = {
+    every?: JwtTokenWhereInput
+    some?: JwtTokenWhereInput
+    none?: JwtTokenWhereInput
+  }
+
   export type DeviceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type JwtTokenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9298,8 +12144,8 @@ export namespace Prisma {
     password_u?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrder
-    jwt_hash?: SortOrder
     jwt_version?: SortOrder
+    last_login?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -9314,8 +12160,8 @@ export namespace Prisma {
     password_u?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrder
-    jwt_hash?: SortOrder
     jwt_version?: SortOrder
+    last_login?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -9326,8 +12172,8 @@ export namespace Prisma {
     password_u?: SortOrder
     creation_date?: SortOrder
     update_date?: SortOrder
-    jwt_hash?: SortOrder
     jwt_version?: SortOrder
+    last_login?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -9362,6 +12208,117 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type JwtActivityListRelationFilter = {
+    every?: JwtActivityWhereInput
+    some?: JwtActivityWhereInput
+    none?: JwtActivityWhereInput
+  }
+
+  export type JwtActivityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type JwtTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    tokenType?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    lastUsedAt?: SortOrder
+    useCount?: SortOrder
+    maxUses?: SortOrder
+    isRevoked?: SortOrder
+  }
+
+  export type JwtTokenAvgOrderByAggregateInput = {
+    useCount?: SortOrder
+    maxUses?: SortOrder
+  }
+
+  export type JwtTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    tokenType?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    lastUsedAt?: SortOrder
+    useCount?: SortOrder
+    maxUses?: SortOrder
+    isRevoked?: SortOrder
+  }
+
+  export type JwtTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    tokenType?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    lastUsedAt?: SortOrder
+    useCount?: SortOrder
+    maxUses?: SortOrder
+    isRevoked?: SortOrder
+  }
+
+  export type JwtTokenSumOrderByAggregateInput = {
+    useCount?: SortOrder
+    maxUses?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type JwtTokenScalarRelationFilter = {
+    is?: JwtTokenWhereInput
+    isNot?: JwtTokenWhereInput
+  }
+
+  export type JwtActivityCountOrderByAggregateInput = {
+    id?: SortOrder
+    tokenId?: SortOrder
+    action?: SortOrder
+    performedAt?: SortOrder
+  }
+
+  export type JwtActivityAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type JwtActivityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tokenId?: SortOrder
+    action?: SortOrder
+    performedAt?: SortOrder
+  }
+
+  export type JwtActivityMinOrderByAggregateInput = {
+    id?: SortOrder
+    tokenId?: SortOrder
+    action?: SortOrder
+    performedAt?: SortOrder
+  }
+
+  export type JwtActivitySumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -9464,11 +12421,6 @@ export namespace Prisma {
   export type DeviceConfigurationSumOrderByAggregateInput = {
     id?: SortOrder
     channel?: SortOrder
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
   }
 
   export type ConnectionCountOrderByAggregateInput = {
@@ -9739,6 +12691,13 @@ export namespace Prisma {
     connect?: DeviceWhereUniqueInput | DeviceWhereUniqueInput[]
   }
 
+  export type JwtTokenCreateNestedManyWithoutUserInput = {
+    create?: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput> | JwtTokenCreateWithoutUserInput[] | JwtTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutUserInput | JwtTokenCreateOrConnectWithoutUserInput[]
+    createMany?: JwtTokenCreateManyUserInputEnvelope
+    connect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+  }
+
   export type ConnectionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ConnectionCreateWithoutUserInput, ConnectionUncheckedCreateWithoutUserInput> | ConnectionCreateWithoutUserInput[] | ConnectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ConnectionCreateOrConnectWithoutUserInput | ConnectionCreateOrConnectWithoutUserInput[]
@@ -9751,6 +12710,13 @@ export namespace Prisma {
     connectOrCreate?: DeviceCreateOrConnectWithoutUserInput | DeviceCreateOrConnectWithoutUserInput[]
     createMany?: DeviceCreateManyUserInputEnvelope
     connect?: DeviceWhereUniqueInput | DeviceWhereUniqueInput[]
+  }
+
+  export type JwtTokenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput> | JwtTokenCreateWithoutUserInput[] | JwtTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutUserInput | JwtTokenCreateOrConnectWithoutUserInput[]
+    createMany?: JwtTokenCreateManyUserInputEnvelope
+    connect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -9793,6 +12759,20 @@ export namespace Prisma {
     deleteMany?: DeviceScalarWhereInput | DeviceScalarWhereInput[]
   }
 
+  export type JwtTokenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput> | JwtTokenCreateWithoutUserInput[] | JwtTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutUserInput | JwtTokenCreateOrConnectWithoutUserInput[]
+    upsert?: JwtTokenUpsertWithWhereUniqueWithoutUserInput | JwtTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: JwtTokenCreateManyUserInputEnvelope
+    set?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    disconnect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    delete?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    connect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    update?: JwtTokenUpdateWithWhereUniqueWithoutUserInput | JwtTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: JwtTokenUpdateManyWithWhereWithoutUserInput | JwtTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: JwtTokenScalarWhereInput | JwtTokenScalarWhereInput[]
+  }
+
   export type ConnectionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ConnectionCreateWithoutUserInput, ConnectionUncheckedCreateWithoutUserInput> | ConnectionCreateWithoutUserInput[] | ConnectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ConnectionCreateOrConnectWithoutUserInput | ConnectionCreateOrConnectWithoutUserInput[]
@@ -9819,6 +12799,94 @@ export namespace Prisma {
     update?: DeviceUpdateWithWhereUniqueWithoutUserInput | DeviceUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: DeviceUpdateManyWithWhereWithoutUserInput | DeviceUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: DeviceScalarWhereInput | DeviceScalarWhereInput[]
+  }
+
+  export type JwtTokenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput> | JwtTokenCreateWithoutUserInput[] | JwtTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutUserInput | JwtTokenCreateOrConnectWithoutUserInput[]
+    upsert?: JwtTokenUpsertWithWhereUniqueWithoutUserInput | JwtTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: JwtTokenCreateManyUserInputEnvelope
+    set?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    disconnect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    delete?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    connect?: JwtTokenWhereUniqueInput | JwtTokenWhereUniqueInput[]
+    update?: JwtTokenUpdateWithWhereUniqueWithoutUserInput | JwtTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: JwtTokenUpdateManyWithWhereWithoutUserInput | JwtTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: JwtTokenScalarWhereInput | JwtTokenScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutJwtTokensInput = {
+    create?: XOR<UserCreateWithoutJwtTokensInput, UserUncheckedCreateWithoutJwtTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutJwtTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type JwtActivityCreateNestedManyWithoutJwtTokenInput = {
+    create?: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput> | JwtActivityCreateWithoutJwtTokenInput[] | JwtActivityUncheckedCreateWithoutJwtTokenInput[]
+    connectOrCreate?: JwtActivityCreateOrConnectWithoutJwtTokenInput | JwtActivityCreateOrConnectWithoutJwtTokenInput[]
+    createMany?: JwtActivityCreateManyJwtTokenInputEnvelope
+    connect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+  }
+
+  export type JwtActivityUncheckedCreateNestedManyWithoutJwtTokenInput = {
+    create?: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput> | JwtActivityCreateWithoutJwtTokenInput[] | JwtActivityUncheckedCreateWithoutJwtTokenInput[]
+    connectOrCreate?: JwtActivityCreateOrConnectWithoutJwtTokenInput | JwtActivityCreateOrConnectWithoutJwtTokenInput[]
+    createMany?: JwtActivityCreateManyJwtTokenInputEnvelope
+    connect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutJwtTokensNestedInput = {
+    create?: XOR<UserCreateWithoutJwtTokensInput, UserUncheckedCreateWithoutJwtTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutJwtTokensInput
+    upsert?: UserUpsertWithoutJwtTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutJwtTokensInput, UserUpdateWithoutJwtTokensInput>, UserUncheckedUpdateWithoutJwtTokensInput>
+  }
+
+  export type JwtActivityUpdateManyWithoutJwtTokenNestedInput = {
+    create?: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput> | JwtActivityCreateWithoutJwtTokenInput[] | JwtActivityUncheckedCreateWithoutJwtTokenInput[]
+    connectOrCreate?: JwtActivityCreateOrConnectWithoutJwtTokenInput | JwtActivityCreateOrConnectWithoutJwtTokenInput[]
+    upsert?: JwtActivityUpsertWithWhereUniqueWithoutJwtTokenInput | JwtActivityUpsertWithWhereUniqueWithoutJwtTokenInput[]
+    createMany?: JwtActivityCreateManyJwtTokenInputEnvelope
+    set?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    disconnect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    delete?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    connect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    update?: JwtActivityUpdateWithWhereUniqueWithoutJwtTokenInput | JwtActivityUpdateWithWhereUniqueWithoutJwtTokenInput[]
+    updateMany?: JwtActivityUpdateManyWithWhereWithoutJwtTokenInput | JwtActivityUpdateManyWithWhereWithoutJwtTokenInput[]
+    deleteMany?: JwtActivityScalarWhereInput | JwtActivityScalarWhereInput[]
+  }
+
+  export type JwtActivityUncheckedUpdateManyWithoutJwtTokenNestedInput = {
+    create?: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput> | JwtActivityCreateWithoutJwtTokenInput[] | JwtActivityUncheckedCreateWithoutJwtTokenInput[]
+    connectOrCreate?: JwtActivityCreateOrConnectWithoutJwtTokenInput | JwtActivityCreateOrConnectWithoutJwtTokenInput[]
+    upsert?: JwtActivityUpsertWithWhereUniqueWithoutJwtTokenInput | JwtActivityUpsertWithWhereUniqueWithoutJwtTokenInput[]
+    createMany?: JwtActivityCreateManyJwtTokenInputEnvelope
+    set?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    disconnect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    delete?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    connect?: JwtActivityWhereUniqueInput | JwtActivityWhereUniqueInput[]
+    update?: JwtActivityUpdateWithWhereUniqueWithoutJwtTokenInput | JwtActivityUpdateWithWhereUniqueWithoutJwtTokenInput[]
+    updateMany?: JwtActivityUpdateManyWithWhereWithoutJwtTokenInput | JwtActivityUpdateManyWithWhereWithoutJwtTokenInput[]
+    deleteMany?: JwtActivityScalarWhereInput | JwtActivityScalarWhereInput[]
+  }
+
+  export type JwtTokenCreateNestedOneWithoutActivitiesInput = {
+    create?: XOR<JwtTokenCreateWithoutActivitiesInput, JwtTokenUncheckedCreateWithoutActivitiesInput>
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutActivitiesInput
+    connect?: JwtTokenWhereUniqueInput
+  }
+
+  export type JwtTokenUpdateOneRequiredWithoutActivitiesNestedInput = {
+    create?: XOR<JwtTokenCreateWithoutActivitiesInput, JwtTokenUncheckedCreateWithoutActivitiesInput>
+    connectOrCreate?: JwtTokenCreateOrConnectWithoutActivitiesInput
+    upsert?: JwtTokenUpsertWithoutActivitiesInput
+    connect?: JwtTokenWhereUniqueInput
+    update?: XOR<XOR<JwtTokenUpdateToOneWithWhereWithoutActivitiesInput, JwtTokenUpdateWithoutActivitiesInput>, JwtTokenUncheckedUpdateWithoutActivitiesInput>
   }
 
   export type DeviceCreateNestedOneWithoutLocationsInput = {
@@ -10060,6 +13128,19 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -10171,9 +13252,10 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     connections?: ConnectionCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDevicesInput = {
@@ -10184,9 +13266,10 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDevicesInput = {
@@ -10318,9 +13401,10 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     connections?: ConnectionUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDevicesInput = {
@@ -10331,9 +13415,10 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ConnectionCreateWithoutUserInput = {
@@ -10391,6 +13476,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type JwtTokenCreateWithoutUserInput = {
+    id?: string
+    tokenHash: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+    activities?: JwtActivityCreateNestedManyWithoutJwtTokenInput
+  }
+
+  export type JwtTokenUncheckedCreateWithoutUserInput = {
+    id?: string
+    tokenHash: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+    activities?: JwtActivityUncheckedCreateNestedManyWithoutJwtTokenInput
+  }
+
+  export type JwtTokenCreateOrConnectWithoutUserInput = {
+    where: JwtTokenWhereUniqueInput
+    create: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type JwtTokenCreateManyUserInputEnvelope = {
+    data: JwtTokenCreateManyUserInput | JwtTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ConnectionUpsertWithWhereUniqueWithoutUserInput = {
     where: ConnectionWhereUniqueInput
     update: XOR<ConnectionUpdateWithoutUserInput, ConnectionUncheckedUpdateWithoutUserInput>
@@ -10432,6 +13553,225 @@ export namespace Prisma {
     status_d?: StringFilter<"Device"> | string
     update_date?: DateTimeNullableFilter<"Device"> | Date | string | null
     userId?: StringNullableFilter<"Device"> | string | null
+  }
+
+  export type JwtTokenUpsertWithWhereUniqueWithoutUserInput = {
+    where: JwtTokenWhereUniqueInput
+    update: XOR<JwtTokenUpdateWithoutUserInput, JwtTokenUncheckedUpdateWithoutUserInput>
+    create: XOR<JwtTokenCreateWithoutUserInput, JwtTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type JwtTokenUpdateWithWhereUniqueWithoutUserInput = {
+    where: JwtTokenWhereUniqueInput
+    data: XOR<JwtTokenUpdateWithoutUserInput, JwtTokenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type JwtTokenUpdateManyWithWhereWithoutUserInput = {
+    where: JwtTokenScalarWhereInput
+    data: XOR<JwtTokenUpdateManyMutationInput, JwtTokenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type JwtTokenScalarWhereInput = {
+    AND?: JwtTokenScalarWhereInput | JwtTokenScalarWhereInput[]
+    OR?: JwtTokenScalarWhereInput[]
+    NOT?: JwtTokenScalarWhereInput | JwtTokenScalarWhereInput[]
+    id?: StringFilter<"JwtToken"> | string
+    tokenHash?: StringFilter<"JwtToken"> | string
+    userId?: StringFilter<"JwtToken"> | string
+    tokenType?: StringFilter<"JwtToken"> | string
+    createdAt?: DateTimeFilter<"JwtToken"> | Date | string
+    expiresAt?: DateTimeFilter<"JwtToken"> | Date | string
+    lastUsedAt?: DateTimeNullableFilter<"JwtToken"> | Date | string | null
+    useCount?: IntFilter<"JwtToken"> | number
+    maxUses?: IntFilter<"JwtToken"> | number
+    isRevoked?: BoolFilter<"JwtToken"> | boolean
+  }
+
+  export type UserCreateWithoutJwtTokensInput = {
+    id?: string
+    username: string
+    phone_number: string
+    email: string
+    password_u: string
+    creation_date?: Date | string
+    update_date?: Date | string | null
+    jwt_version?: number
+    last_login?: Date | string | null
+    connections?: ConnectionCreateNestedManyWithoutUserInput
+    devices?: DeviceCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutJwtTokensInput = {
+    id?: string
+    username: string
+    phone_number: string
+    email: string
+    password_u: string
+    creation_date?: Date | string
+    update_date?: Date | string | null
+    jwt_version?: number
+    last_login?: Date | string | null
+    connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
+    devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutJwtTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutJwtTokensInput, UserUncheckedCreateWithoutJwtTokensInput>
+  }
+
+  export type JwtActivityCreateWithoutJwtTokenInput = {
+    action: string
+    performedAt?: Date | string
+  }
+
+  export type JwtActivityUncheckedCreateWithoutJwtTokenInput = {
+    id?: number
+    action: string
+    performedAt?: Date | string
+  }
+
+  export type JwtActivityCreateOrConnectWithoutJwtTokenInput = {
+    where: JwtActivityWhereUniqueInput
+    create: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput>
+  }
+
+  export type JwtActivityCreateManyJwtTokenInputEnvelope = {
+    data: JwtActivityCreateManyJwtTokenInput | JwtActivityCreateManyJwtTokenInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutJwtTokensInput = {
+    update: XOR<UserUpdateWithoutJwtTokensInput, UserUncheckedUpdateWithoutJwtTokensInput>
+    create: XOR<UserCreateWithoutJwtTokensInput, UserUncheckedCreateWithoutJwtTokensInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutJwtTokensInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutJwtTokensInput, UserUncheckedUpdateWithoutJwtTokensInput>
+  }
+
+  export type UserUpdateWithoutJwtTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password_u?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    connections?: ConnectionUpdateManyWithoutUserNestedInput
+    devices?: DeviceUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutJwtTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password_u?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
+    devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type JwtActivityUpsertWithWhereUniqueWithoutJwtTokenInput = {
+    where: JwtActivityWhereUniqueInput
+    update: XOR<JwtActivityUpdateWithoutJwtTokenInput, JwtActivityUncheckedUpdateWithoutJwtTokenInput>
+    create: XOR<JwtActivityCreateWithoutJwtTokenInput, JwtActivityUncheckedCreateWithoutJwtTokenInput>
+  }
+
+  export type JwtActivityUpdateWithWhereUniqueWithoutJwtTokenInput = {
+    where: JwtActivityWhereUniqueInput
+    data: XOR<JwtActivityUpdateWithoutJwtTokenInput, JwtActivityUncheckedUpdateWithoutJwtTokenInput>
+  }
+
+  export type JwtActivityUpdateManyWithWhereWithoutJwtTokenInput = {
+    where: JwtActivityScalarWhereInput
+    data: XOR<JwtActivityUpdateManyMutationInput, JwtActivityUncheckedUpdateManyWithoutJwtTokenInput>
+  }
+
+  export type JwtActivityScalarWhereInput = {
+    AND?: JwtActivityScalarWhereInput | JwtActivityScalarWhereInput[]
+    OR?: JwtActivityScalarWhereInput[]
+    NOT?: JwtActivityScalarWhereInput | JwtActivityScalarWhereInput[]
+    id?: IntFilter<"JwtActivity"> | number
+    tokenId?: StringFilter<"JwtActivity"> | string
+    action?: StringFilter<"JwtActivity"> | string
+    performedAt?: DateTimeFilter<"JwtActivity"> | Date | string
+  }
+
+  export type JwtTokenCreateWithoutActivitiesInput = {
+    id?: string
+    tokenHash: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+    user: UserCreateNestedOneWithoutJwtTokensInput
+  }
+
+  export type JwtTokenUncheckedCreateWithoutActivitiesInput = {
+    id?: string
+    tokenHash: string
+    userId: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+  }
+
+  export type JwtTokenCreateOrConnectWithoutActivitiesInput = {
+    where: JwtTokenWhereUniqueInput
+    create: XOR<JwtTokenCreateWithoutActivitiesInput, JwtTokenUncheckedCreateWithoutActivitiesInput>
+  }
+
+  export type JwtTokenUpsertWithoutActivitiesInput = {
+    update: XOR<JwtTokenUpdateWithoutActivitiesInput, JwtTokenUncheckedUpdateWithoutActivitiesInput>
+    create: XOR<JwtTokenCreateWithoutActivitiesInput, JwtTokenUncheckedCreateWithoutActivitiesInput>
+    where?: JwtTokenWhereInput
+  }
+
+  export type JwtTokenUpdateToOneWithWhereWithoutActivitiesInput = {
+    where?: JwtTokenWhereInput
+    data: XOR<JwtTokenUpdateWithoutActivitiesInput, JwtTokenUncheckedUpdateWithoutActivitiesInput>
+  }
+
+  export type JwtTokenUpdateWithoutActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutJwtTokensNestedInput
+  }
+
+  export type JwtTokenUncheckedUpdateWithoutActivitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type DeviceCreateWithoutLocationsInput = {
@@ -10589,9 +13929,10 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     devices?: DeviceCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutConnectionsInput = {
@@ -10602,9 +13943,10 @@ export namespace Prisma {
     password_u: string
     creation_date?: Date | string
     update_date?: Date | string | null
-    jwt_hash?: string | null
     jwt_version?: number
+    last_login?: Date | string | null
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
+    jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutConnectionsInput = {
@@ -10664,9 +14006,10 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     devices?: DeviceUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutConnectionsInput = {
@@ -10677,9 +14020,10 @@ export namespace Prisma {
     password_u?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    jwt_hash?: NullableStringFieldUpdateOperationsInput | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
+    last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
+    jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DeviceCreateWithoutRecordsInput = {
@@ -10837,6 +14181,18 @@ export namespace Prisma {
     update_date?: Date | string | null
   }
 
+  export type JwtTokenCreateManyUserInput = {
+    id?: string
+    tokenHash: string
+    tokenType?: string
+    createdAt?: Date | string
+    expiresAt: Date | string
+    lastUsedAt?: Date | string | null
+    useCount?: number
+    maxUses?: number
+    isRevoked?: boolean
+  }
+
   export type ConnectionUpdateWithoutUserInput = {
     name_usuario_invitado?: StringFieldUpdateOperationsInput | string
     type_connection?: StringFieldUpdateOperationsInput | string
@@ -10884,6 +14240,67 @@ export namespace Prisma {
     name_device?: StringFieldUpdateOperationsInput | string
     status_d?: StringFieldUpdateOperationsInput | string
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type JwtTokenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    activities?: JwtActivityUpdateManyWithoutJwtTokenNestedInput
+  }
+
+  export type JwtTokenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+    activities?: JwtActivityUncheckedUpdateManyWithoutJwtTokenNestedInput
+  }
+
+  export type JwtTokenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    tokenType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    useCount?: IntFieldUpdateOperationsInput | number
+    maxUses?: IntFieldUpdateOperationsInput | number
+    isRevoked?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type JwtActivityCreateManyJwtTokenInput = {
+    id?: number
+    action: string
+    performedAt?: Date | string
+  }
+
+  export type JwtActivityUpdateWithoutJwtTokenInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JwtActivityUncheckedUpdateWithoutJwtTokenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JwtActivityUncheckedUpdateManyWithoutJwtTokenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    performedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

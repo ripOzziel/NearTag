@@ -13,24 +13,26 @@ import { assignDeviceToUser } from "../controllers/device/asignDeviceToUser.js";
 import { markDeviceAsLost } from "../controllers/device/markDeviceToLost.js";
 import { getUserDevices } from "../controllers/device/getUserDevices.js";
 import { removeDeviceFromUser } from "../controllers/device/removeDeviceFromUser.js";
+import { refreshToken } from "../middleware/refreshToken.js";
 
 const router = Router();
 
-router.post('/', createUser);
-router.post('/login', getUser);
+router.post('/', createUser); 
+router.post('/login', getUser); 
 
-router.post('/signOut', authMiddleware, signOut);
-router.post('/assign', authMiddleware, assignDeviceToUser);
+router.post('/signOut', authMiddleware, signOut); 
+router.post('/assign', authMiddleware, assignDeviceToUser); 
 router.patch('/:deviceId/lost', authMiddleware, markDeviceAsLost); 
-router.get('/user/:userId/devices', authMiddleware, getUserDevices); 
-router.delete('/:deviceId/delete', authMiddleware, removeDeviceFromUser);
-router.get('/:deviceId/location', authMiddleware, getCurrentLocation);
-router.patch('/user/:userId/username', authMiddleware, updateUsername);
-router.patch('/user/:userId/email', authMiddleware, updateEmail);
-router.patch('/user/:userId/phone-number', authMiddleware, updatePhoneNumber);
-router.patch('/user/:userId/password', authMiddleware, updatePassword);
-router.get('/user/:userId', authMiddleware, getUserData);
+router.get('/user/:userId/devices', authMiddleware, getUserDevices);  
+router.delete('/:deviceId/delete', authMiddleware, removeDeviceFromUser); 
+router.get('/:deviceId/location', authMiddleware, getCurrentLocation); 
+router.patch('/user/:userId/username', authMiddleware, updateUsername); 
+router.patch('/user/:userId/email', authMiddleware, updateEmail); 
+router.patch('/user/:userId/phone-number', authMiddleware, updatePhoneNumber); 
+router.patch('/user/:userId/password', authMiddleware, updatePassword); 
+router.get('/user/:userId', authMiddleware, getUserData); 
 
+router.post('/refresh-token', refreshToken); 
 
 //! endpoints para administradores
 //! agregar un endpoint para que un administrador pueda eliminar dispositivos

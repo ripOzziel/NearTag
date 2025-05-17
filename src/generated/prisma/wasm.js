@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -136,8 +136,28 @@ exports.Prisma.UserScalarFieldEnum = {
   password_u: 'password_u',
   creation_date: 'creation_date',
   update_date: 'update_date',
-  jwt_hash: 'jwt_hash',
-  jwt_version: 'jwt_version'
+  jwt_version: 'jwt_version',
+  last_login: 'last_login'
+};
+
+exports.Prisma.JwtTokenScalarFieldEnum = {
+  id: 'id',
+  tokenHash: 'tokenHash',
+  userId: 'userId',
+  tokenType: 'tokenType',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt',
+  lastUsedAt: 'lastUsedAt',
+  useCount: 'useCount',
+  maxUses: 'maxUses',
+  isRevoked: 'isRevoked'
+};
+
+exports.Prisma.JwtActivityScalarFieldEnum = {
+  id: 'id',
+  tokenId: 'tokenId',
+  action: 'action',
+  performedAt: 'performedAt'
 };
 
 exports.Prisma.LocationsScalarFieldEnum = {
@@ -191,6 +211,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Device: 'Device',
   User: 'User',
+  JwtToken: 'JwtToken',
+  JwtActivity: 'JwtActivity',
   Locations: 'Locations',
   DeviceConfiguration: 'DeviceConfiguration',
   Connection: 'Connection',

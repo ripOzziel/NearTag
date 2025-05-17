@@ -4,6 +4,7 @@ import prisma from '../lib/prisma.js';
 export const getCurrentLocation = async (req: Request, res: Response): Promise<any> => {
   const { deviceId } = req.params;
   const authId = req.user?.id;
+  const tokenId = req.tokenId!;
 
   try {
     // Verificar si el dispositivo existe
@@ -25,6 +26,13 @@ export const getCurrentLocation = async (req: Request, res: Response): Promise<a
     if (!location) {
       return res.status(404).json({ error: 'No se encontró ubicación para este dispositivo' });
     }
+
+    await prisma.jwtActivity.create({
+      data:{
+        tokenId: tokenId,
+        action: 'obtner la ubicacion de un dispositivo'
+      }
+    })
 
     return res.status(200).json({ location });
   } catch (err) {

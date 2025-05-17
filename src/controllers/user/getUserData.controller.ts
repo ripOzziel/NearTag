@@ -4,6 +4,7 @@ import prisma from '../../lib/prisma.js';
 export const getUserData = async (req: Request, res: Response): Promise<any> => {
   const { userId } = req.params;
   const authId = req.user?.id;
+  const tokenId = req.tokenId!;
 
   try {
     if (authId !== userId) {
@@ -21,11 +22,18 @@ export const getUserData = async (req: Request, res: Response): Promise<any> => 
       },
     });
 
+    await prisma.jwtActivity.create({
+      data:{
+        tokenId: tokenId,
+        action: 'obtener los datos del usuario'
+      }
+    })
+    
     if (!user) {
       return res.status(404).json({ error: 'usuario no encontrado' });
     }
 
-    return res.status(200).json({ user });
+    return res.status(200).json({ message:'usuario encontrado', user });
   } catch (err) {
     return res.status(500).json({
       error: 'error al obtener los datos del usuario',

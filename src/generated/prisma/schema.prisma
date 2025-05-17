@@ -32,9 +32,36 @@ model User {
   update_date   DateTime?
   connections   Connection[]
 
-  devices     Device[]
-  jwt_hash    String?
-  jwt_version Int      @default(0)
+  devices Device[]
+
+  jwtTokens   JwtToken[]
+  jwt_version Int        @default(0)
+
+  last_login DateTime?
+}
+
+model JwtToken {
+  id         String    @id @default(uuid())
+  tokenHash  String    @unique
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  tokenType  String    @default("access")
+  createdAt  DateTime  @default(now())
+  expiresAt  DateTime
+  lastUsedAt DateTime?
+  useCount   Int       @default(0)
+  maxUses    Int       @default(20)
+  isRevoked  Boolean   @default(false)
+
+  activities JwtActivity[]
+}
+
+model JwtActivity {
+  id          Int      @id @default(autoincrement())
+  tokenId     String
+  jwtToken    JwtToken @relation(fields: [tokenId], references: [id])
+  action      String
+  performedAt DateTime @default(now())
 }
 
 model Locations {

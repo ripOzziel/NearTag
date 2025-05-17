@@ -14,34 +14,31 @@ export const createUser = async (req: Request, res: Response): Promise<any> => {
     }
   
     const { username, phone_number, email, password_u } = validation.data;
-    const uniqueEmail = await prisma.user.findUnique({
-      where: { email },
-    });
-  
-    if(uniqueEmail) return res.status(401).json({
-      error: 'este email ya esta registrado en otra cuenta'
-    });
     
     try {
-      const hashedPassword = await bcrypt.hash(password_u, 10);
-  
-      const newUser = await prisma.user.create({
-        data: {
-          username,
-          phone_number,
-          email,
-          creation_date: new Date(),
-          password_u: hashedPassword,
-        },
+      const uniqueEmail = await prisma.user.findUnique({
+        where: { email },
       });
-  
-      return res.status(201).json({ 
-          id: newUser.id, 
-          username, 
-          phone_number, 
-          email, 
-          creation_date: new Date() 
-        });
+    
+      if(uniqueEmail) return res.status(401).json({
+        error: 'este email ya esta registrado en otra cuenta'
+      });
+      const hashedPassword = await bcrypt.hash(password_u, 10);
+      
+      await prisma.$transaction([
+        prisma.user.create({
+          data: {
+            username: username,
+            phone_number: phone_number,
+            email: email,
+            password_u: hashedPassword,
+            creation_date: new Date(),
+            jwt_version: 0
+          }
+        })
+      ])
+
+      return res.status(201).json({ message: 'usuario creado con exito'});
     } catch (err) {
       return res.status(500).json({ error: 'Error al crear usuario', detail: err });
     }

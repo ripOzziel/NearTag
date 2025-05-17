@@ -5,6 +5,8 @@ import prisma from '../../lib/prisma.js';
 export const updateUsername = async (req: Request, res: Response): Promise<any> => {
     const { userId } = req.params;
     const authId = req.user?.id;
+    const tokenId = req.tokenId!;
+
     const schema = z.object({
       newUsername: z.string().min(3).max(30),
     });
@@ -27,6 +29,12 @@ export const updateUsername = async (req: Request, res: Response): Promise<any> 
         return res.status(403).json({ error: 'No tiene permisos para acceder a la ubicación de este dispositivo' });
       }
   
+      await prisma.jwtActivity.create({
+        data:{
+          tokenId: tokenId,
+          action: 'actualizacion del nombre de usuario'
+        }
+      })
       await prisma.user.update({
         where: {id: userId},
         data:{

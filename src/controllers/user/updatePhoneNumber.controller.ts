@@ -12,6 +12,7 @@ export const updatePhoneNumber = async (req: Request, res: Response): Promise<an
 
     const { userId } = req.params;
     const authId = req.user?.id;
+    const tokenId = req.tokenId!;
   
     const parse = phoneNumberSchema.safeParse(req.body);
     if (!parse.success) {
@@ -38,6 +39,13 @@ export const updatePhoneNumber = async (req: Request, res: Response): Promise<an
         if (!passwordMatches) {
           return res.status(401).json({ error: 'contraseña incorrecta' });
         }
+
+        await prisma.jwtActivity.create({
+          data:{
+            tokenId: tokenId,
+            action: 'actualizacion de numero de telefono del usuario'
+          }
+        })
 
         await prisma.user.update({
             where: { id: userId },

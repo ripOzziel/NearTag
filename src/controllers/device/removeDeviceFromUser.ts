@@ -7,6 +7,7 @@ export const removeDeviceFromUser = async (req: Request, res: Response): Promise
     try {
       const { deviceId } = req.params; // IDs del usuario y del dispositivo
       const authId = req.user?.id;
+      const tokenId = req.tokenId!;
   
       // Verificar si el dispositivo existe
       const device = await prisma.device.findUnique({ where: { id_device: deviceId }, include: { user: true } });
@@ -17,6 +18,13 @@ export const removeDeviceFromUser = async (req: Request, res: Response): Promise
       if (device.userId !== authId) {
         return res.status(403).json({ error: 'No tiene permisos sobre este dispositivo' });
       }
+      
+      await prisma.jwtActivity.create({
+        data:{
+          tokenId: tokenId,
+          action: 'eliminacion de un dispositivo'
+        }
+      })
   
       //se deben eliminar tambien las relaciones de fk q tenia
       await prisma.deviceConfiguration.deleteMany({ where: { id_device: deviceId } });
