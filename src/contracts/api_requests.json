@@ -1,0 +1,175 @@
+{
+  "auth": {
+    "register": {
+      "method": "POST",
+      "url": "/",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "username": "string (min: 4, max: 30)",
+        "phone_number": "string (max: 15)",
+        "email": "string (email format)",
+        "password_u": "string (min: 8, max: 60)"
+      }
+    },
+    "login": {
+      "method": "POST",
+      "url": "/login",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "string (email format)",
+        "password": "string"
+      }
+    },
+    "logout": {
+      "method": "POST",
+      "url": "/signOut",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      }
+    },
+    "refreshToken": {
+      "method": "POST",
+      "url": "/refresh-token",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "refreshToken": "string"
+      }
+    }
+  },
+  "user": {
+    "getData": {
+      "method": "GET",
+      "url": "/user/:userId",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      }
+    },
+    "updateUsername": {
+      "method": "PATCH",
+      "url": "/user/:userId/username",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "body": {
+        "newUsername": "string (min: 3, max: 30)"
+      }
+    },
+    "updateEmail": {
+      "method": "PATCH",
+      "url": "/user/:userId/email",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "body": {
+        "newEmail": "string (email format)",
+        "password": "string (min: 8)"
+      }
+    },
+    "updatePhoneNumber": {
+      "method": "PATCH",
+      "url": "/user/:userId/phone-number",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "body": {
+        "newPhoneNumber": "string (max: 15)",
+        "password": "string (min: 8)"
+      }
+    },
+    "updatePassword": {
+      "method": "PATCH",
+      "url": "/user/:userId/password",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "body": {
+        "currentPassword": "string (min: 8)",
+        "newPassword": "string (min: 8)"
+      }
+    }
+  },
+  "device": {
+    "assign": {
+      "method": "POST",
+      "url": "/assign",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <token>"
+      },
+      "body": {
+        "userId": "string (uuid)",
+        "deviceName": "string (optional)",
+        "macAddress": "string (MAC format)",
+        "channel": "number (optional)",
+        "longitude": "number",
+        "latitude": "number"
+      }
+    },
+    "markAsLost": {
+      "method": "PATCH",
+      "url": "/:deviceId/lost",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "deviceId": "string (uuid)"
+      }
+    },
+    "getUserDevices": {
+      "method": "GET",
+      "url": "/user/:userId/devices",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      }
+    },
+    "removeDevice": {
+      "method": "DELETE",
+      "url": "/:deviceId/delete",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "deviceId": "string (uuid)"
+      }
+    },
+    "getLocation": {
+      "method": "GET",
+      "url": "/:deviceId/location",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      },
+      "params": {
+        "deviceId": "string (uuid)"
+      }
+    }
+  }
+}
