@@ -1,0 +1,297 @@
+{
+  "auth": {
+    "register": {
+      "success": {
+        "status": 201,
+        "response": {
+          "message": "usuario creado con exito"
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Datos de usuario inválidos",
+          "details": "Errores de validación Zod"
+        }
+      }
+    },
+    "login": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "login exitoso",
+          "tokens": {
+            "accessToken": "string",
+            "refreshToken": "string"
+          },
+          "user": {
+            "id": "string",
+            "username": "string",
+            "email": "string"
+          }
+        }
+      },
+      "error": {
+        "status": 401,
+        "response": {
+          "error": "email no registrado | contraseña incorrecta"
+        }
+      }
+    },
+    "logout": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "sesion cerrada exitosamente"
+        }
+      },
+      "error": {
+        "status": 500,
+        "response": {
+          "error": "Error al cerrar sesión",
+          "detail": "mensaje de error"
+        }
+      }
+    }
+  },
+  "user": {
+    "getData": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "usuario encontrado",
+          "user": {
+            "username": "string",
+            "email": "string",
+            "phone_number": "string",
+            "creation_date": "date",
+            "update_date": "date | null"
+          }
+        }
+      },
+      "error": {
+        "status": 404,
+        "response": {
+          "error": "usuario no encontrado"
+        }
+      }
+    },
+    "updateUsername": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "nombre de usuario actualizado exitosamente"
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Datos inválidos"
+        }
+      }
+    },
+    "updateEmail": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "correo actualizado correctamente"
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Datos inválidos",
+          "detail": "Errores de validación Zod"
+        }
+      },
+      "conflicts": {
+        "status": 409,
+        "response": {
+          "error": "Este correo ya está en uso por otra cuenta"
+        }
+      }
+    },
+    "updatePhoneNumber": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "numero de telefono actualizado correctamente"
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Datos inválidos",
+          "detail": "Errores de validación Zod"
+        }
+      },
+      "conflicts": {
+        "status": 409,
+        "response": {
+          "error": "Este numero de telefono ya está en uso por otra cuenta"
+        }
+      }
+    },
+    "updatePassword": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "contraseña actualizada correctamente"
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Datos inválidos",
+          "detail": "Errores de validación Zod"
+        }
+      },
+      "unauthorized": {
+        "status": 401,
+        "response": {
+          "error": "La contraseña actual es incorrecta"
+        }
+      }
+    }
+  },
+  "device": {
+    "assign": {
+      "success": {
+        "status": 201,
+        "response": {
+          "message": "dispositivo asignado correctamente",
+          "device": {
+            "id_device": "string",
+            "name_device": "string",
+            "status_d": "string",
+            "update_date": "date",
+            "configuration": {
+              "device_name": "string",
+              "mac_address": "string",
+              "channel": "number"
+            },
+            "locations": [{
+              "longitude": "number",
+              "latitude": "number",
+              "date_l": "date"
+            }]
+          }
+        }
+      },
+      "error": {
+        "status": 400,
+        "response": {
+          "error": "Error de validación",
+          "details": "Errores de validación Zod"
+        }
+      }
+    },
+    "markAsLost": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "Dispositivo marcado como perdido",
+          "device": {
+            "id_device": "string",
+            "status_d": "perdido",
+            "update_date": "date",
+            "configuration": {
+              "device_name": "string",
+              "mac_address": "string",
+              "channel": "number"
+            }
+          }
+        }
+      },
+      "error": {
+        "status": 404,
+        "response": {
+          "error": "Dispositivo no encontrado"
+        }
+      }
+    },
+    "getUserDevices": {
+      "success": {
+        "status": 200,
+        "response": {
+          "devices": [{
+            "name_device": "string",
+            "status_d": "string",
+            "update_date": "date",
+            "connections": "array",
+            "configuration": {
+              "device_name": "string",
+              "mac_address": "string",
+              "channel": "number"
+            },
+            "locations": [{
+              "longitude": "number",
+              "latitude": "number",
+              "date_l": "date"
+            }]
+          }]
+        }
+      },
+      "error": {
+        "status": 404,
+        "response": {
+          "error": "usuario no encontrado"
+        }
+      }
+    },
+    "removeDevice": {
+      "success": {
+        "status": 200,
+        "response": {
+          "message": "neartag eliminado correctamente"
+        }
+      },
+      "error": {
+        "status": 404,
+        "response": {
+          "error": "Dispositivo no encontrado"
+        }
+      }
+    },
+    "getLocation": {
+      "success": {
+        "status": 200,
+        "response": {
+          "location": {
+            "longitude": "number",
+            "latitude": "number",
+            "date_l": "date"
+          }
+        }
+      },
+      "error": {
+        "status": 404,
+        "response": {
+          "error": "No se encontró ubicación para este dispositivo"
+        }
+      }
+    }
+  },
+  "token": {
+    "refresh": {
+      "success": {
+        "status": 200,
+        "response": {
+          "accessToken": "string"
+        }
+      },
+      "error": {
+        "status": 401,
+        "response": {
+          "error": "Token inválido o expirado"
+        }
+      },
+      "badRequest": {
+        "status": 400,
+        "response": {
+          "error": "Refresh token no proporcionado"
+        }
+      }
+    }
+  }
+}
