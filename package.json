@@ -6,7 +6,8 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "create-admin": "ts-node scripts/createAdmin.js"
+    "create-admin": "ts-node scripts/createAdmin.js",
+    "swagger-validate": "swagger-cli validate src/docs/swagger/swagger.json"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.15",
     "@types/request-ip": "^0.0.41",
+    "@types/swagger-ui-express": "^4.1.8",
     "prisma": "^6.8.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",

@@ -8,9 +8,9 @@ interface RateLimitConfig extends Partial<Options> {
 }
 
 const rateLimitConfig: RateLimitConfig ={
-    windowMs: 20 * 60 * 1000, // 20 minutes
+    windowMs: 2 * 60 * 1000, // 20 minutes
     max: 25, // limit each IP to 30 requests per windowMs
-    message: { error: "Too many requests", retryAfter: "1 minute" }, // added message property
+    message: { error: "Too many requests", retryAfter: "2 minutes" }, // added message property
     
     keyGenerator: (function (req: any) {
         return req.headers["x-forwarded-for"] || req.connection.remoteAddress; 

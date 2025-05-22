@@ -1,4 +1,6 @@
 import app from './app.js';
 
-app.listen(3000);
+const port = process.env.PORT
+app.listen(port);
 console.log('api funcionando correctamente');
+console.log(`Corriendo en http://localhost:${port}`)

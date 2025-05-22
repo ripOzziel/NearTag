@@ -14,6 +14,10 @@ import { markDeviceAsLost } from "../controllers/device/markDeviceToLost.js";
 import { getUserDevices } from "../controllers/device/getUserDevices.js";
 import { removeDeviceFromUser } from "../controllers/device/removeDeviceFromUser.js";
 import { refreshToken } from "../middleware/refreshToken.js";
+import { notFoundHandler } from '../controllers/error/notFound.controller.js';
+
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../docs/swagger/swagger.json' with { type: "json" };
 
 const router = Router();
 
@@ -21,6 +25,7 @@ router.get('/', (req, res) =>{
     res.send('API SECURITE')
 
 })
+//public routes
 router.post('/register', createUser); 
 router.post('/login', getUser); 
 
@@ -38,9 +43,16 @@ router.get('/user/:userId', authMiddleware, getUserData);
 
 router.post('/refresh-token', refreshToken); 
 
+// Swagger documentation route
+router.use('/api-docs', swaggerUi.serve);
+router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+
+// Admin endpoints
 //! endpoints para administradores
 //! agregar un endpoint para que un administrador pueda eliminar dispositivos
 //! tambien obtener el numero de dispositivos activos, perdidos, apagados
 
+// 404 handler - debe ir al final de todas las rutas
+router.use(notFoundHandler);
 
 export default router;
