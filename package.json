@@ -19,6 +19,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.15",
+    "@types/request-ip": "^0.0.41",
     "prisma": "^6.8.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
@@ -30,8 +31,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "request-ip": "^3.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "zod": "^3.24.4"

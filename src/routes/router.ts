@@ -17,7 +17,11 @@ import { refreshToken } from "../middleware/refreshToken.js";
 
 const router = Router();
 
-router.post('/', createUser); 
+router.get('/', (req, res) =>{
+    res.send('API SECURITE')
+
+})
+router.post('/register', createUser); 
 router.post('/login', getUser); 
 
 router.post('/signOut', authMiddleware, signOut); 
