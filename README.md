@@ -116,5 +116,6 @@ The API uses standard HTTP status codes and returns consistent error objects:
 
 ## 👥 Authors
 
-- ripOzziel
+- ripOzziel [YourGitHub](https://github.com/ripOzziel)
+- Hector-Y-SM [YourGitHub](https://github.com/Hector-Y-SM)
 
