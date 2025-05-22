@@ -316,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -2850,6 +2850,7 @@ export namespace Prisma {
     update_date: Date | null
     jwt_version: number | null
     last_login: Date | null
+    role: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2862,6 +2863,7 @@ export namespace Prisma {
     update_date: Date | null
     jwt_version: number | null
     last_login: Date | null
+    role: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2874,6 +2876,7 @@ export namespace Prisma {
     update_date: number
     jwt_version: number
     last_login: number
+    role: number
     _all: number
   }
 
@@ -2896,6 +2899,7 @@ export namespace Prisma {
     update_date?: true
     jwt_version?: true
     last_login?: true
+    role?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2908,6 +2912,7 @@ export namespace Prisma {
     update_date?: true
     jwt_version?: true
     last_login?: true
+    role?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2920,6 +2925,7 @@ export namespace Prisma {
     update_date?: true
     jwt_version?: true
     last_login?: true
+    role?: true
     _all?: true
   }
 
@@ -3019,6 +3025,7 @@ export namespace Prisma {
     update_date: Date | null
     jwt_version: number
     last_login: Date | null
+    role: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -3050,6 +3057,7 @@ export namespace Prisma {
     update_date?: boolean
     jwt_version?: boolean
     last_login?: boolean
+    role?: boolean
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
     jwtTokens?: boolean | User$jwtTokensArgs<ExtArgs>
@@ -3066,6 +3074,7 @@ export namespace Prisma {
     update_date?: boolean
     jwt_version?: boolean
     last_login?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3078,6 +3087,7 @@ export namespace Prisma {
     update_date?: boolean
     jwt_version?: boolean
     last_login?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -3090,9 +3100,10 @@ export namespace Prisma {
     update_date?: boolean
     jwt_version?: boolean
     last_login?: boolean
+    role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_version" | "last_login", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "phone_number" | "email" | "password_u" | "creation_date" | "update_date" | "jwt_version" | "last_login" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     connections?: boolean | User$connectionsArgs<ExtArgs>
     devices?: boolean | User$devicesArgs<ExtArgs>
@@ -3119,6 +3130,7 @@ export namespace Prisma {
       update_date: Date | null
       jwt_version: number
       last_login: Date | null
+      role: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3554,6 +3566,7 @@ export namespace Prisma {
     readonly update_date: FieldRef<"User", 'DateTime'>
     readonly jwt_version: FieldRef<"User", 'Int'>
     readonly last_login: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'String'>
   }
     
 
@@ -10732,7 +10745,8 @@ export namespace Prisma {
     creation_date: 'creation_date',
     update_date: 'update_date',
     jwt_version: 'jwt_version',
-    last_login: 'last_login'
+    last_login: 'last_login',
+    role: 'role'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -10983,6 +10997,7 @@ export namespace Prisma {
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_version?: IntFilter<"User"> | number
     last_login?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: StringFilter<"User"> | string
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
     jwtTokens?: JwtTokenListRelationFilter
@@ -10998,6 +11013,7 @@ export namespace Prisma {
     update_date?: SortOrderInput | SortOrder
     jwt_version?: SortOrder
     last_login?: SortOrderInput | SortOrder
+    role?: SortOrder
     connections?: ConnectionOrderByRelationAggregateInput
     devices?: DeviceOrderByRelationAggregateInput
     jwtTokens?: JwtTokenOrderByRelationAggregateInput
@@ -11016,6 +11032,7 @@ export namespace Prisma {
     update_date?: DateTimeNullableFilter<"User"> | Date | string | null
     jwt_version?: IntFilter<"User"> | number
     last_login?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: StringFilter<"User"> | string
     connections?: ConnectionListRelationFilter
     devices?: DeviceListRelationFilter
     jwtTokens?: JwtTokenListRelationFilter
@@ -11031,6 +11048,7 @@ export namespace Prisma {
     update_date?: SortOrderInput | SortOrder
     jwt_version?: SortOrder
     last_login?: SortOrderInput | SortOrder
+    role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -11051,6 +11069,7 @@ export namespace Prisma {
     update_date?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     jwt_version?: IntWithAggregatesFilter<"User"> | number
     last_login?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    role?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type JwtTokenWhereInput = {
@@ -11502,6 +11521,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionCreateNestedManyWithoutUserInput
     devices?: DeviceCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
@@ -11517,6 +11537,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
@@ -11532,6 +11553,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUpdateManyWithoutUserNestedInput
     devices?: DeviceUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
@@ -11547,6 +11569,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -11562,6 +11585,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -11574,6 +11598,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -11586,6 +11611,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
   }
 
   export type JwtTokenCreateInput = {
@@ -12146,6 +12172,7 @@ export namespace Prisma {
     update_date?: SortOrder
     jwt_version?: SortOrder
     last_login?: SortOrder
+    role?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -12162,6 +12189,7 @@ export namespace Prisma {
     update_date?: SortOrder
     jwt_version?: SortOrder
     last_login?: SortOrder
+    role?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -12174,6 +12202,7 @@ export namespace Prisma {
     update_date?: SortOrder
     jwt_version?: SortOrder
     last_login?: SortOrder
+    role?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -13254,6 +13283,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
   }
@@ -13268,6 +13298,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13403,6 +13434,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
   }
@@ -13417,6 +13449,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13597,6 +13630,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionCreateNestedManyWithoutUserInput
     devices?: DeviceCreateNestedManyWithoutUserInput
   }
@@ -13611,6 +13645,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13662,6 +13697,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUpdateManyWithoutUserNestedInput
     devices?: DeviceUpdateManyWithoutUserNestedInput
   }
@@ -13676,6 +13712,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13931,6 +13968,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     devices?: DeviceCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenCreateNestedManyWithoutUserInput
   }
@@ -13945,6 +13983,7 @@ export namespace Prisma {
     update_date?: Date | string | null
     jwt_version?: number
     last_login?: Date | string | null
+    role?: string
     devices?: DeviceUncheckedCreateNestedManyWithoutUserInput
     jwtTokens?: JwtTokenUncheckedCreateNestedManyWithoutUserInput
   }
@@ -14008,6 +14047,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     devices?: DeviceUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUpdateManyWithoutUserNestedInput
   }
@@ -14022,6 +14062,7 @@ export namespace Prisma {
     update_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jwt_version?: IntFieldUpdateOperationsInput | number
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: StringFieldUpdateOperationsInput | string
     devices?: DeviceUncheckedUpdateManyWithoutUserNestedInput
     jwtTokens?: JwtTokenUncheckedUpdateManyWithoutUserNestedInput
   }

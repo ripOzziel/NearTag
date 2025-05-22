@@ -1,0 +1,186 @@
+{
+  "users": {
+    "deleteUser": {
+      "method": "DELETE",
+      "url": "/admin/users/:userId",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <admin-token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "responses": {
+        "200": {
+          "message": "Usuario eliminado exitosamente",
+          "deletedUser": {
+            "email": "string",
+            "username": "string"
+          }
+        },
+        "401": {
+          "error": "No autenticado"
+        },
+        "403": {
+          "error": "No se pueden eliminar usuarios administradores"
+        },
+        "404": {
+          "error": "Usuario no encontrado"
+        },
+        "500": {
+          "error": "Error al eliminar usuario",
+          "detail": "string"
+        }
+      }
+    },
+    "getAllUsers": {
+      "method": "GET",
+      "url": "/admin/users",
+      "headers": {
+        "Authorization": "Bearer <admin-token>"
+      },
+      "query": {
+        "page": "number (optional)",
+        "limit": "number (optional)",
+        "search": "string (optional)"
+      },
+      "responses": {
+        "200": {
+          "users": [{
+            "id": "string",
+            "username": "string",
+            "email": "string",
+            "phone_number": "string",
+            "creation_date": "date",
+            "last_login": "date",
+            "devices_count": "number"
+          }],
+          "pagination": {
+            "total": "number",
+            "pages": "number",
+            "currentPage": "number",
+            "hasNext": "boolean",
+            "hasPrev": "boolean"
+          }
+        },
+        "401": {
+          "error": "No autenticado"
+        },
+        "403": {
+          "error": "Acceso denegado: se requieren privilegios de administrador"
+        }
+      }
+    },
+    "getUserDetails": {
+      "method": "GET",
+      "url": "/admin/users/:userId",
+      "headers": {
+        "Authorization": "Bearer <admin-token>"
+      },
+      "params": {
+        "userId": "string (uuid)"
+      },
+      "responses": {
+        "200": {
+          "user": {
+            "id": "string",
+            "username": "string",
+            "email": "string",
+            "phone_number": "string",
+            "creation_date": "date",
+            "last_login": "date",
+            "devices": [{
+              "id": "string",
+              "name": "string",
+              "status": "string",
+              "last_location": {
+                "latitude": "number",
+                "longitude": "number",
+                "date": "date"
+              }
+            }],
+            "activity": [{
+              "action": "string",
+              "date": "date"
+            }]
+          }
+        },
+        "401": {
+          "error": "No autenticado"
+        },
+        "403": {
+          "error": "Acceso denegado"
+        },
+        "404": {
+          "error": "Usuario no encontrado"
+        }
+      }
+    }
+  },
+  "devices": {
+    "getAllDevices": {
+      "method": "GET",
+      "url": "/admin/devices",
+      "headers": {
+        "Authorization": "Bearer <admin-token>"
+      },
+      "query": {
+        "status": "string (optional) [active, lost, inactive]",
+        "page": "number (optional)",
+        "limit": "number (optional)"
+      },
+      "responses": {
+        "200": {
+          "devices": [{
+            "id": "string",
+            "name": "string",
+            "status": "string",
+            "user": {
+              "id": "string",
+              "username": "string",
+              "email": "string"
+            },
+            "last_location": {
+              "latitude": "number",
+              "longitude": "number",
+              "date": "date"
+            }
+          }],
+          "pagination": {
+            "total": "number",
+            "pages": "number",
+            "currentPage": "number"
+          }
+        }
+      }
+    }
+  },
+  "statistics": {
+    "getSystemStats": {
+      "method": "GET",
+      "url": "/admin/stats",
+      "headers": {
+        "Authorization": "Bearer <admin-token>"
+      },
+      "responses": {
+        "200": {
+          "users": {
+            "total": "number",
+            "activeToday": "number",
+            "newThisMonth": "number"
+          },
+          "devices": {
+            "total": "number",
+            "active": "number",
+            "lost": "number",
+            "inactive": "number"
+          },
+          "locations": {
+            "updatedToday": "number",
+            "totalTracked": "number"
+          }
+        }
+      }
+    }
+  }
+}
