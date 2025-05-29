@@ -43,9 +43,14 @@ router.get('/user/:userId', authMiddleware, getUserData);
 
 router.post('/refresh-token', refreshToken); 
 
-// Swagger documentation route
 router.use('/api-docs', swaggerUi.serve);
-router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+router.get('/api-docs', swaggerUi.setup(swaggerDocument, {
+  customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+  customJs: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+  ],
+}));
 
 // Admin endpoints
 //! endpoints para administradores
