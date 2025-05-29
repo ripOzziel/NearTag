@@ -1,6 +1,23 @@
-import app from './app.js';
+import express from "express"; //framework de node
+import cors from "cors";
+import morgan from "morgan"; //esto controla el registro de las solicitudes HTTP
+import router from "./routes/router.js";
+import limiter from "./middleware/limiter.js";
+import requestIp from 'request-ip'
 
-const port = process.env.PORT
-app.listen(port);
-console.log('api funcionando correctamente');
-console.log(`Corriendo en http://localhost:${port}`)
+
+
+const app = express(); //instanciar la aplicacion express
+
+app.use(limiter);
+app.use(cors()); //? permitir las solicitudes desde cualquier origen
+app.use(morgan("dev")); //? ver peticiones HTTP por consola
+app.use(express.json()); //? analizar el cuerpo de las solicitados como json
+app.use(requestIp.mw());
+
+
+//app.use(limiter)
+app.use('/api',router); //? montar las rutas definidas
+
+
+export default app;
