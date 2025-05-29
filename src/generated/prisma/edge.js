@@ -202,7 +202,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/ripozziel/Escritorio/Backend/neartag/src/generated/prisma",
+      "value": "/home/ripozziel/Escritorio/octavo/Backend/neartag/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -216,11 +216,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/ripozziel/Escritorio/Backend/neartag/prisma/schema.prisma",
+    "sourceFilePath": "/home/ripozziel/Escritorio/octavo/Backend/neartag/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -230,7 +230,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
