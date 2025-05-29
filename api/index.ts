@@ -17,7 +17,9 @@ app.use(requestIp.mw());
 
 
 //app.use(limiter)
-app.use(router); //? montar las rutas definidas
+app.use('/api', router); //? montar las rutas definidas
 
 
-export default app;
+export default function handler(req: any, res: any) {
+    app(req, res); // esta línea convierte Express en serverless handler
+  }

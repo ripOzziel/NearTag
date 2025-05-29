@@ -1,0 +1,39 @@
+@api = http://localhost:3000
+
+POST {{api}}/
+Content-Type: application/json
+
+{
+  "username": "hectorrrr",
+  "phone_number": "6462705566",
+  "email": "al21760271@ite.edu.mx",
+  "password_u": "password",
+}
+
+###
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "email": "al21760277@ite.edu.mx",
+    "password": "password"
+}
+
+###
+POST {{api}}/assign
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImViYzM1NmVjLTcxZDctNDEyYS1hNzQ1LWIwYjNhNmRlMDBjYiIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NjQxMTR9.M5-LWZjvO-yRW4PQ7b7SSql-AUmSJCAbBqOiF8Qotac
+
+{
+    "userId": "ebc356ec-71d7-412a-a745-b0b3a6de00cb",
+    "deviceName": "chuche test",    
+    "macAddress": "d9:t3:cc:7b:22:95",  
+    "channel": 1,
+    "longitude": 32.4962,  
+    "latitude": -116.9462  
+}
+###
+POST {{api}}/signout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImViYzM1NmVjLTcxZDctNDEyYS1hNzQ1LWIwYjNhNmRlMDBjYiIsInVzZXJuYW1lIjoiaGVjdG9yIiwiZW1haWwiOiJhbDIxNzYwMjc3QGl0ZS5lZHUubXgiLCJpYXQiOjE3NDY3NjQxMTR9.M5-LWZjvO-yRW4PQ7b7SSql-AUmSJCAbBqOiF8Qotac
+
